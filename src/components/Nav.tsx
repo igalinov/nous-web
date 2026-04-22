@@ -1,7 +1,7 @@
 export default function Nav({ active }: { active?: 'manifiesto' }) {
   return (
     <nav style={{
-      padding: '8px 40px',
+      padding: '4px 40px',
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center',
