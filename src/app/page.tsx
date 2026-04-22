@@ -14,8 +14,12 @@ export default function Home() {
       {/* HERO */}
       <section style={{
         flex: 1,
-        padding: '140px 40px 120px',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
         textAlign: 'center',
+        padding: '40px',
         maxWidth: '800px',
         margin: '0 auto',
         width: '100%',
@@ -26,34 +30,34 @@ export default function Home() {
           color: 'var(--ginger)',
           letterSpacing: '0.16em',
           textTransform: 'uppercase',
-          marginBottom: '28px',
+          marginBottom: '20px',
         }}>
           disponible pronto
         </p>
 
         <h1 style={{
           fontFamily: 'var(--font-serif)',
-          fontSize: 'clamp(64px, 11vw, 108px)',
+          fontSize: 'clamp(56px, 9vw, 96px)',
           color: 'var(--obsidian)',
           letterSpacing: '-3px',
           lineHeight: '1.0',
-          marginBottom: '32px',
+          marginBottom: '24px',
         }}>
           tu mente.<br />sin niebla.
         </h1>
 
         <p style={{
-          fontSize: '20px',
+          fontSize: '18px',
           color: 'var(--ink-3)',
           maxWidth: '480px',
-          margin: '0 auto 56px',
+          margin: '0 auto 40px',
           lineHeight: '1.75',
         }}>
           la práctica diaria de seguir pensando por ti mismo
           en la era de la inteligencia artificial.
         </p>
 
-        <div id="waitlist">
+        <div id="waitlist" style={{ width: '100%' }}>
           <WaitlistForm />
         </div>
       </section>
