@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
+
+:root {
+  --obsidian: #0a0a0a;
+  --fog: #f5f4f0;
+  --fog-mid: #edecea;
+  --ginger: #BE5504;
+  --ginger-light: #FAEBD4;
+  --ginger-dark: #7A2E00;
+  --white: #ffffff;
+  --ink-2: #555555;
+  --ink-3: #999999;
+  --border: rgba(10, 10, 10, 0.09);
+
+  --font-serif: 'DM Serif Display', Georgia, serif;
+  --font-sans: 'DM Sans', system-ui, sans-serif;
+  --font-mono: 'DM Mono', monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--fog);
+  color: var(--obsidian);
+  line-height: 1.6;
+}
+
+::selection {
+  background: var(--ginger);
+  color: var(--white);
+}
