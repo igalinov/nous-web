@@ -2,6 +2,8 @@
 
 Este fichero define el contexto permanente del proyecto noüs para Claude Code.
 Léelo completo antes de cualquier acción. Es innegociable.
+Antes de generar cualquier documento, código o copy — verificar que es
+coherente con este fichero y con el brand bible.
 
 ---
 
@@ -14,9 +16,17 @@ Es la práctica diaria de la independencia cognitiva.
 
 **El problema que resuelve:** cuanto más delegamos tareas de pensamiento a
 herramientas de IA, más se atrofia nuestra capacidad de razonar de forma
-independiente.
+independiente. noüs no es anti-IA. La IA es extraordinaria. noüs es el
+complemento necesario — el entrenamiento cognitivo para la era de la IA.
+
+**El founder:** CTO de Movimer World. Construye noüs como proyecto paralelo
+porque lo vive en primera persona como usuario intensivo de IA. Nunca decir
+que "dejó su trabajo". Nunca narrativa de founder a tiempo completo.
 
 **Modelo de negocio:** freemium B2C → licencias B2B enterprise.
+
+**Posicionamiento:** lujo silencioso. Soberanía cognitiva. Pro-IA, pro-pensamiento
+propio. El Loro Piana de las apps cognitivas.
 
 ---
 
@@ -25,12 +35,11 @@ independiente.
 ### naming
 - El nombre de la marca es siempre **noüs** — minúsculas, con diéresis
 - Handle de Instagram: **@think.nous**
-- Dominio: **noüs.es**
-- Email: **hola@noüs.es**
+- Dominio real: **noüs.es** (Punycode: xn--nos-ioa.es)
+- Email: **hola@xn--nos-ioa.es** (se muestra como hola@noüs.es)
 - El dominio y el handle son infraestructura. La marca es noüs.
 - Nunca escribir NOÜS, Noüs, Nous o nous sin diéresis en contexto de marca
-- La única excepción: variables de código, rutas de archivos y nombres de
-  paquetes npm donde la ü no es válida
+- Excepción: variables de código, rutas de archivos, npm donde ü no es válida
 
 ### paleta de color — tokens exactos
 ```
@@ -82,6 +91,7 @@ independiente.
 - Directo sin ser brusco
 - Filosófico sin ser pretencioso
 - Preciso sin ser frío
+- Pro-IA siempre — noüs complementa la IA, no la combate
 - Sin emojis en ningún contexto
 - Sin exclamaciones encadenadas
 - Sin lenguaje de coach motivacional
@@ -89,6 +99,72 @@ independiente.
 
 Correcto: "buen razonamiento, marc." / "7 minutos. cada día."
 Incorrecto: "¡¡Increíble!! 🎉" / "¡No rompas tu racha! 🔥"
+
+---
+
+## estado actual del proyecto — abril 2026
+
+### infraestructura ✅ completada
+- noüs.es live en Vercel — desplegado y funcionando
+- Supabase — schema fase 1 y fase 2 ejecutados · 9 tablas activas
+- Resend verificado — emails transaccionales funcionando
+- Cloudflare gestionando DNS de noüs.es
+- GitHub repositorio limpio — nous-web en main
+- @think.nous registrado en Instagram
+- CLAUDE.md sincronizado en el proyecto local
+
+### web ✅ completada y refinada
+- 3 páginas independientes: / · /manifiesto · /acceso-anticipado
+- API route /api/waitlist — captura email + welcome email automático
+- Stack: Next.js 14 + TypeScript + Supabase + Resend + Vercel
+- Fix aplicado: maybeSingle() para evitar 406 en Supabase
+- Fix aplicado: RESEND_FROM_EMAIL = hola@xn--nos-ioa.es
+- Estética: obsidian full en las 3 páginas — diseño dark aprobado
+
+### marketing ✅ definido
+- Plan de marketing LinkedIn + Instagram completado
+- 12 posts de LinkedIn escritos y listos para publicar
+- 9 posts de Instagram definidos con especificaciones visuales
+- Calendario editorial de 12 semanas
+- Banco de contenido con 2 semanas de colchón preparado
+
+### documentación ✅ completada
+- Brand bible definitivo
+- Plan de marketing v1.0
+- Estrategia de engagement
+- El Momento — 8 casos reales
+- Documentación BBDD completa
+- Tarjeta compartible aprobada
+- Roadmap 3 meses
+
+---
+
+## próximos pasos — en orden de prioridad
+
+### 1. marketing — esta semana
+- Publicar el primer post de LinkedIn (12 posts listos, elegir el mejor)
+- Tu novia: crear cuenta @think.nous y publicar los primeros 3 posts
+- Tu novia: diseñar foto de perfil y 4 portadas de destacados en Figma
+- Configurar nous.es como link en bio de Instagram
+
+### 2. proyecto Xcode — próxima sesión
+- Crear proyecto Xcode con estructura base SwiftUI
+- Configurar tokens de color como extensión de Color
+- Configurar tokens tipográficos como extensión de Font
+- Añadir Supabase Swift SDK como dependencia
+- Añadir RevenueCat como dependencia
+- Añadir PostHog iOS SDK como dependencia
+- Crear estructura de navegación base
+
+### 3. BBDD — fase 3 pendiente
+- Añadir tabla device_tokens cuando arranquen las push notifications
+- Estructura: id, user_id (FK→profiles), token (text), platform ('ios'),
+  created_at, updated_at
+
+### 4. Apple Developer Program
+- Registrarse en Apple Developer Program (99$/año)
+- Configurar Sign in with Apple en Supabase
+- Crear App ID para noüs en App Store Connect
 
 ---
 
@@ -160,15 +236,14 @@ noüs score = (agudeza × 0.40) + (criterio × 0.40) + (consistencia × 0.20)
 
 ### notificaciones — solo 2 tipos
 1. **Momento cognitivo** — push en el momento elegido por el usuario
-2. **Score en riesgo** — push a las 24h sin sesión avisando que el
-   score puede bajar
+2. **Score en riesgo** — push a las 24h sin sesión avisando que el score puede bajar
 - Nunca más notificaciones. Nunca.
 
 ### la tarjeta compartible
 - Aparece solo después de completar la sesión diaria
 - Siempre con identidad: foto de perfil + nombre completo
 - El anillo del noüs score (diseño aprobado)
-- Las 3 dimensiones con barras de progreso
+- Las 3 dimensiones con barras de progreso en ginger
 - "piensa por ti mismo." + noüs.es
 - Share sheet nativo de iOS — el usuario elige el destino
 - Se registra en tabla `share_cards`
@@ -187,6 +262,68 @@ noüs score = (agudeza × 0.40) + (criterio × 0.40) + (consistencia × 0.20)
 - Principal: Sign in with Apple (Face ID)
 - Fallback: email + contraseña
 - Supabase Auth gestiona ambos
+
+---
+
+## dirección visual y copy — web
+
+### arquitectura de páginas — decisión definitiva
+Cada página tiene exactamente un trabajo. No mezclar:
+- `/` — impacto de marca. hook. sin CTA.
+- `/manifiesto` — convicción. el texto completo. sin eyebrow, sin CTA.
+- `/acceso-anticipado` — captura. el formulario de waitlist.
+
+### estética web aprobada
+- Fondo: **obsidian (#0a0a0a)** en las 3 páginas — la web es enteramente dark
+- El fog no se usa en la web — es exclusivo de pantallas light de la app iOS
+- Sin footer con wordmark noüs — solo @think.nous y la frase de cierre
+- Footer: rgba(255,255,255,0.50) — nunca ginger en el footer
+
+### nav web — valores aprobados
+- noüs wordmark: DM Serif 28px, blanco, enlaza a /
+- Links "manifiesto" y "acceso anticipado": mismo color, nunca ginger
+  - Activo: rgba(255,255,255,0.85)
+  - Inactivo: rgba(255,255,255,0.40)
+- Padding vertical: 4px — barra muy estrecha
+- Nunca noüs wordmark en el footer web
+
+### hero — copy y diseño definitivos y aprobados
+```
+H1 línea 1:  "delegar es fácil."          → color: #ffffff
+H1 línea 2:  "pensar, cada vez menos."    → color: rgba(255,255,255,0.32)
+subtítulo:   "siete minutos al día. para seguir siendo tú."
+             → DM Serif · color: var(--ginger)
+```
+El degradado de opacidad en el H1 no es decorativo — el texto se desvanece
+para reforzar visualmente el concepto de "cada vez menos". No cambiar.
+Sin eyebrow. Sin CTA. El index es un momento de marca, no una página de conversión.
+
+### /acceso-anticipado — copy aprobado
+```
+eyebrow:  "sé el primero en acceder."  → DM Mono · ginger
+H1:       "está en camino."            → DM Serif · grande · blanco
+```
+
+### /manifiesto — reglas
+- Empieza directamente con "hay personas que piensan." — sin eyebrow ni label
+- Texto normal: rgba(255,255,255,0.85)
+- Texto muted: rgba(255,255,255,0.30)
+- Texto accent: var(--ginger)
+- Bordes entre líneas: rgba(255,255,255,0.06)
+- Termina en "piensa por ti mismo." en ginger — sin CTA a continuación
+
+### uso del ginger en la web
+Ginger está reservado exclusivamente para:
+- Subtítulo del hero ("siete minutos al día. para seguir siendo tú.")
+- Eyebrow de /acceso-anticipado
+- Líneas accent del manifiesto ("¿hasta dónde estás dispuesto a delegar?", etc.)
+- Enlace @think.nous en footer (único elemento)
+Nunca ginger en links de nav. Nunca ginger en cuerpo de texto.
+
+### copy web — reglas
+- Minimizar repetición del nombre noüs dentro de una misma página
+- Nunca `textTransform: uppercase` en copy — minúsculas siempre en CSS y en texto
+- El nombre noüs aparece una sola vez por página: en el wordmark del nav
 
 ---
 
@@ -270,57 +407,76 @@ Font.nousSans(size:)    // DM Sans
 ### web (nous/web)
 - Next.js 14, TypeScript
 - CSS variables nativas — sin Tailwind, sin CSS Modules
-- Deploy: Vercel
+- Deploy: Vercel — producción en noüs.es
 - Supabase (DB + Auth), Resend (emails), PostHog (analytics)
+- Fix crítico: usar maybeSingle() no single() en queries de existencia
+- Fix crítico: RESEND_FROM_EMAIL debe ser hola@xn--nos-ioa.es en Vercel
 
 ### app iOS (nous/app)
 - SwiftUI nativo, Xcode
 - Supabase Swift SDK
 - RevenueCat (suscripciones)
-- PostHog iOS (analytics)
-- Sin storyboards
+- PostHog iOS SDK (analytics)
+- Sin storyboards — todo SwiftUI puro
 
 ### estructura de carpetas
 ```
 nous/
-  web/          ← Next.js
-  app/          ← SwiftUI
+  web/          ← Next.js (desplegado en noüs.es)
+  app/          ← SwiftUI (por arrancar)
   brand/        ← documentos de marca
   CLAUDE.md     ← este fichero
 ```
 
 ---
 
-## base de datos — esquema
+## base de datos — estado actual
 
-### fase 1 (ejecutada)
-- `waitlist` — emails de lista de espera
-- `profiles` — perfil de cada usuario
-
-### fase 2 (pendiente de ejecutar)
+### ejecutadas ✅
+- `waitlist` — emails lista de espera
+- `profiles` — perfil de cada usuario (trigger auto-creación al registrarse)
 - `nous_scores` — historial de scores
 - `sessions` — sesiones completadas
-- `exercises` — ejercicios generados por ia
+- `exercises` — ejercicios generados por IA en batch semanal
 - `exercise_responses` — respuestas del usuario
-- `weekly_reports` — resúmenes semanales
-- `share_cards` — registro de tarjetas compartidas
-- `notifications_log` — log de notificaciones enviadas
+- `weekly_reports` — resúmenes semanales automáticos
+- `share_cards` — tarjetas de score compartidas
+- `notifications_log` — log de notificaciones push
 
-**Función clave:** `calculate_nous_score(agudeza, criterio, consistencia)`
-Fórmula: agudeza × 0.40 + criterio × 0.40 + consistencia × 0.20
+### pendiente — fase 3
+- `device_tokens` — necesaria para push notifications via APNs
+
+### funciones ejecutadas
+- `calculate_nous_score(agudeza, criterio, consistencia)` → numeric
+  Fórmula: (agudeza × 0.40) + (criterio × 0.40) + (consistencia × 0.20)
+  Usar siempre esta función — nunca calcular el score manualmente.
+- `update_streak(user_id)` → void
+  Lógica: ayer → streak+1 · hoy → sin cambio · antes → streak=1
+- `handle_new_user()` → trigger (auto-creación de perfil)
+- `handle_updated_at()` → trigger (actualiza updated_at en profiles)
+
+### reglas de uso críticas
+- Nunca calcular el score manualmente — siempre calculate_nous_score()
+- Nunca insertar en exercises desde el cliente — solo service_role
+- Nunca insertar en weekly_reports desde el cliente — solo service_role
+- Nunca insertar en notifications_log desde el cliente — solo service_role
+- `onboarded` en profiles controla qué pantalla ve el usuario al abrir la app
+- `is_premium` en profiles controla el acceso a features premium
 
 ---
 
 ## stack de servicios
 
-| Servicio | Uso |
-|----------|-----|
-| Supabase | DB + Auth |
-| Resend | Emails transaccionales |
-| Vercel | Deploy web |
-| RevenueCat | Suscripciones iOS |
-| PostHog | Analytics |
-| Anthropic API | Generación de ejercicios |
+| Servicio | Uso | Estado |
+|----------|-----|--------|
+| Supabase | DB + Auth | ✅ activo |
+| Resend | Emails transaccionales | ✅ verificado |
+| Vercel | Deploy web | ✅ live en noüs.es |
+| Cloudflare | DNS noüs.es | ✅ activo |
+| RevenueCat | Suscripciones iOS | pendiente |
+| PostHog | Analytics | pendiente |
+| Anthropic API | Generación de ejercicios | pendiente |
+| Apple Developer | App Store + Sign in with Apple | pendiente |
 
 ---
 
@@ -334,10 +490,20 @@ Fórmula: agudeza × 0.40 + criterio × 0.40 + consistencia × 0.20
 - App Router de Next.js — no Pages Router
 - `'use client'` solo cuando hay interactividad real
 - API routes en `src/app/api/[nombre]/route.ts`
+- Supabase: usar maybeSingle() para queries donde el resultado puede ser null
 
 ---
 
 ## lo que nunca debes hacer
+
+En copy y narrativa:
+- NOÜS, Noüs o NOUS en contexto de marca
+- Decir que el founder dejó su trabajo — es CTO de Movimer World
+- Narrativa anti-IA — noüs complementa la IA, no la combate
+- Tono motivacional o de coach
+- Exclamaciones encadenadas
+- Comparar noüs con competidores
+- "puntos", "estrellas", "racha" — el score no es gamificación
 
 En diseño:
 - Gradientes de ningún tipo
@@ -347,19 +513,16 @@ En diseño:
 - Emojis en cualquier componente
 - Blanco puro como fondo de pantalla
 - Tailwind o cualquier framework CSS externo
-- Texto en mayúsculas en el copy
-
-En copy:
-- NOÜS, Noüs o NOUS en contexto de marca
-- Tono motivacional o de coach
-- Exclamaciones encadenadas
-- Comparar noüs con competidores
-- "puntos", "estrellas", "racha" — el score no es gamificación
+- Texto en mayúsculas en el copy — ni en CSS (textTransform) ni en el texto
+- Ginger en links de nav web o en el footer web
+- Repetir el nombre noüs más de una vez por página web
+- Mezclar CTA con páginas de contenido — cada página tiene un solo trabajo
 
 En código:
 - Hex hardcodeado fuera de globals.css
 - `any` en TypeScript
 - `// @ts-ignore`
+- `.single()` en Supabase cuando el resultado puede ser null — usar `.maybeSingle()`
 
 ---
 
@@ -404,112 +567,6 @@ piensa por ti mismo.
 
 ---
 
-*CLAUDE.md · noüs · v2.0 · abril 2026*
+*CLAUDE.md · noüs · v3.1 · abril 2026*
 *Solo contiene decisiones ya tomadas. No especular sobre funcionalidad no
-definida. Actualizar cuando se tomen nuevas decisiones.*
-
----
-
-## base de datos — documentación completa
-
-### tablas fase 1 (ejecutadas)
-
-**public.waitlist**
-Emails de la lista de espera recogidos desde noüs.es.
-Columnas: id (uuid PK), email (text unique), source (text, default 'noüs.es'), created_at (timestamptz)
-RLS: INSERT anónimo permitido · SELECT solo service_role
-
-**public.profiles**
-Perfil completo de cada usuario. Se crea automáticamente via trigger al registrarse.
-Columnas: id (uuid PK FK→auth.users), email, full_name, display_name, avatar_url,
-auth_provider ('apple'|'email'), sector, ai_frequency, cognitive_moment ('06'|'08'|'12'|'17'),
-from_waitlist (boolean), onboarded (boolean), is_premium (boolean), premium_since,
-streak_days (integer), last_session_at, created_at, updated_at
-RLS: SELECT/UPDATE solo el propio usuario · INSERT solo service_role (via trigger)
-
-### tablas fase 2 (ejecutadas)
-
-**public.nous_scores**
-Historial completo de scores. Un registro por sesión completada.
-Columnas: id, user_id (FK→profiles), score (0-100), agudeza (0-100), criterio (0-100),
-consistencia (0-100), session_id (FK→sessions), score_delta, created_at
-RLS: SELECT/INSERT solo el propio usuario
-
-**public.sessions**
-Cada sesión diaria o extra del usuario.
-Columnas: id, user_id (FK→profiles), status ('in_progress'|'completed'|'abandoned'),
-completed_at, cognitive_area ('razonamiento'|'argumentacion'|'sesgos'|'velocidad'),
-exercises_total, exercises_correct, avg_response_time, accuracy_pct, is_extra (boolean), created_at
-RLS: SELECT/INSERT/UPDATE solo el propio usuario
-
-**public.exercises**
-Banco de ejercicios generados por IA en batch semanal. 35 por usuario por semana.
-Columnas: id, user_id (FK→profiles), cognitive_area, type ('multiple_choice'|'open_answer'),
-difficulty (1-5), question, options (jsonb), correct_answer, context, week_start (date),
-used (boolean), used_in_session (FK→sessions), generated_at
-RLS: SELECT solo el propio usuario · INSERT solo service_role
-
-**public.exercise_responses**
-Respuesta del usuario a cada ejercicio de cada sesión.
-Columnas: id, session_id (FK→sessions), exercise_id (FK→exercises), user_id (FK→profiles),
-response (text), is_correct (boolean, null para open_answer), response_time (seconds),
-ai_evaluation (0-100, solo open_answer), ai_insight (text), created_at
-RLS: SELECT/INSERT solo el propio usuario
-
-**public.weekly_reports**
-Resumen semanal generado cada lunes automáticamente.
-Columnas: id, user_id (FK→profiles), week_start (date), week_end (date),
-score_start, score_end, score_delta, avg_agudeza, avg_criterio, avg_consistencia,
-sessions_completed, sessions_possible (default 7), best_area, worst_area,
-percentile_global, percentile_segment, weekly_insight, sent_at, created_at
-Unique: (user_id, week_start)
-RLS: SELECT solo el propio usuario · INSERT solo service_role
-
-**public.share_cards**
-Registro de tarjetas de score compartidas. Snapshot del score en el momento de compartir.
-Columnas: id, user_id (FK→profiles), session_id (FK→sessions),
-score, agudeza, criterio, consistencia, shared_to ('instagram'|'whatsapp'|'other'), created_at
-RLS: SELECT/INSERT solo el propio usuario
-
-**public.notifications_log**
-Log de notificaciones push enviadas. Solo 3 tipos permitidos.
-Columnas: id, user_id (FK→profiles), type ('cognitive_moment'|'score_at_risk'|'weekly_report'),
-sent_at, opened (boolean)
-RLS: SELECT solo el propio usuario · INSERT solo service_role
-
-### tabla pendiente — fase 3
-
-**public.device_tokens** (pendiente — añadir cuando se implementen push notifications)
-Necesaria para enviar notificaciones push via APNs.
-Columnas sugeridas: id, user_id (FK→profiles), token (text), platform ('ios'),
-created_at, updated_at
-
-### triggers
-
-**on_auth_user_created** — AFTER INSERT ON auth.users
-Llama a handle_new_user(). Crea el perfil automáticamente al registrarse.
-Detecta si el email estaba en waitlist → from_waitlist = true.
-Extrae display_name del nombre de Apple o del email como fallback.
-
-**on_profiles_updated** — BEFORE UPDATE ON public.profiles
-Llama a handle_updated_at(). Actualiza updated_at automáticamente en cada UPDATE.
-
-### funciones
-
-**calculate_nous_score(p_agudeza, p_criterio, p_consistencia) → numeric**
-Fórmula oficial: (agudeza × 0.40) + (criterio × 0.40) + (consistencia × 0.20)
-Llamar siempre esta función — nunca calcular el score manualmente en el código.
-
-**update_streak(p_user_id) → void**
-Actualiza streak_days y last_session_at al completar una sesión.
-Lógica: last_session = ayer → streak+1 · last_session = hoy → sin cambio · antes de ayer → streak=1
-
-### reglas de uso
-
-- Nunca hardcodear el cálculo del score — usar siempre calculate_nous_score()
-- Nunca insertar en exercises desde el cliente — solo service_role
-- Nunca insertar en weekly_reports desde el cliente — solo service_role
-- Nunca insertar en notifications_log desde el cliente — solo service_role
-- El campo onboarded en profiles controla qué pantalla ve el usuario al abrir la app
-- El campo is_premium en profiles controla el acceso a features premium
-- Siempre usar cascade delete — si se borra un usuario, todos sus datos se borran
+definida. Actualizar cuando se tomen nuevas decisiones de producto o arquitectura.*
