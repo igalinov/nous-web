@@ -81,7 +81,7 @@ export default function Home() {
           style={{
             fontFamily: 'var(--font-mono)',
             fontSize: '11px',
-            color: 'var(--ginger)',
+            color: 'rgba(255,255,255,0.50)',
             textDecoration: 'none',
             letterSpacing: '0.08em',
           }}
@@ -91,7 +91,7 @@ export default function Home() {
         <span style={{
           fontFamily: 'var(--font-mono)',
           fontSize: '11px',
-          color: 'var(--ginger)',
+          color: 'rgba(255,255,255,0.50)',
           letterSpacing: '0.06em',
         }}>
           hecho con criterio propio.
