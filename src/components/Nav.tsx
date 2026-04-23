@@ -16,7 +16,7 @@ export default function Nav({ active, dark }: { active?: 'manifiesto' | 'acceso-
         <img
           src="/logo.svg"
           alt="noüs"
-          height={40}
+          height={100}
           style={{
             display: 'block',
             filter: dark ? 'invert(1)' : 'none',
