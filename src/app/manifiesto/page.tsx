@@ -56,18 +56,6 @@ export default function Manifiesto() {
         margin: '0 auto',
         width: '100%',
       }}>
-        <p style={{
-          fontFamily: 'var(--font-mono)',
-          fontSize: '10px',
-          color: 'var(--ginger)',
-          letterSpacing: '0.16em',
-          textTransform: 'uppercase',
-          marginBottom: '48px',
-          textAlign: 'center',
-        }}>
-          manifiesto
-        </p>
-
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           {manifesto.map((line, i) => (
             <p
