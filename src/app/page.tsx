@@ -20,7 +20,7 @@ export default function Home() {
         justifyContent: 'center',
         alignItems: 'center',
         textAlign: 'center',
-        padding: '40px',
+        padding: '32px 40px',
         width: '100%',
       }}>
         <div style={{ maxWidth: '800px', width: '100%' }}>
@@ -31,18 +31,18 @@ export default function Home() {
             color: 'var(--ginger)',
             letterSpacing: '0.18em',
             textTransform: 'uppercase',
-            marginBottom: '24px',
+            marginBottom: '16px',
           }}>
             agudeza · criterio · consistencia
           </p>
 
           <h1 style={{
             fontFamily: 'var(--font-serif)',
-            fontSize: 'clamp(56px, 9vw, 96px)',
+            fontSize: 'clamp(52px, 8.5vw, 92px)',
             color: '#ffffff',
             letterSpacing: '-3px',
             lineHeight: '1.0',
-            marginBottom: '28px',
+            marginBottom: '20px',
           }}>
             tu mente.<br />sin niebla.
           </h1>
@@ -52,7 +52,7 @@ export default function Home() {
             justifyContent: 'center',
             alignItems: 'center',
             gap: '20px',
-            marginBottom: '32px',
+            marginBottom: '24px',
             flexWrap: 'wrap',
           }}>
             {(['7 min · diario', '4 áreas cognitivas', 'score 0 — 100'] as const).map((stat, i, arr) => (
@@ -78,11 +78,11 @@ export default function Home() {
           </div>
 
           <p style={{
-            fontSize: '18px',
+            fontSize: '17px',
             color: 'rgba(255,255,255,0.45)',
             maxWidth: '460px',
-            margin: '0 auto 40px',
-            lineHeight: '1.75',
+            margin: '0 auto 32px',
+            lineHeight: '1.7',
             fontFamily: 'var(--font-sans)',
           }}>
             la práctica diaria de seguir pensando por ti mismo
@@ -98,7 +98,7 @@ export default function Home() {
 
       {/* FOOTER */}
       <footer style={{
-        padding: '20px 40px',
+        padding: '16px 40px',
         borderTop: '1px solid rgba(255,255,255,0.06)',
         display: 'flex',
         justifyContent: 'space-between',
@@ -106,14 +106,6 @@ export default function Home() {
         flexWrap: 'wrap',
         gap: '12px',
       }}>
-        <span style={{
-          fontFamily: 'var(--font-serif)',
-          fontSize: '18px',
-          color: '#ffffff',
-        }}>
-          noüs
-        </span>
-
         <a
           href="https://www.instagram.com/think.nous"
           target="_blank"

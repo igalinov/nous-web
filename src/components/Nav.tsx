@@ -14,7 +14,7 @@ export default function Nav({ active, dark }: { active?: 'manifiesto'; dark?: bo
     }}>
       <a href="/" style={{
         fontFamily: 'var(--font-serif)',
-        fontSize: '48px',
+        fontSize: '28px',
         letterSpacing: '-0.5px',
         color: dark ? '#ffffff' : 'var(--obsidian)',
         textDecoration: 'none',

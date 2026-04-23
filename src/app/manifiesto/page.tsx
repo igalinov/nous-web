@@ -45,15 +45,17 @@ export default function Manifiesto() {
       display: 'flex',
       flexDirection: 'column',
       minHeight: '100vh',
+      background: 'var(--obsidian)',
     }}>
 
-      <Nav active="manifiesto" />
+      <Nav active="manifiesto" dark />
 
       {/* MANIFIESTO */}
       <section style={{
         padding: '80px 40px',
         maxWidth: '640px',
         margin: '0 auto',
+        width: '100%',
       }}>
         <p style={{
           fontFamily: 'var(--font-mono)',
@@ -79,11 +81,11 @@ export default function Manifiesto() {
                 color: line.accent
                   ? 'var(--ginger)'
                   : line.muted
-                  ? 'var(--ink-3)'
-                  : 'var(--obsidian)',
+                  ? 'rgba(255,255,255,0.30)'
+                  : 'rgba(255,255,255,0.85)',
                 paddingTop: line.spacer ? '32px' : '0',
                 paddingBottom: '14px',
-                borderBottom: i < manifesto.length - 1 ? '1px solid var(--border)' : 'none',
+                borderBottom: i < manifesto.length - 1 ? '1px solid rgba(255,255,255,0.06)' : 'none',
               }}
             >
               {line.text}
@@ -108,7 +110,7 @@ export default function Manifiesto() {
       <div style={{
         width: '1px',
         height: '80px',
-        background: 'var(--border)',
+        background: 'rgba(255,255,255,0.06)',
         margin: '0 auto',
       }} />
 
@@ -118,6 +120,7 @@ export default function Manifiesto() {
         textAlign: 'center',
         maxWidth: '640px',
         margin: '0 auto',
+        width: '100%',
       }}>
         <p style={{
           fontFamily: 'var(--font-mono)',
@@ -133,7 +136,7 @@ export default function Manifiesto() {
         <h2 style={{
           fontFamily: 'var(--font-serif)',
           fontSize: 'clamp(24px, 4vw, 32px)',
-          color: 'var(--obsidian)',
+          color: '#ffffff',
           letterSpacing: '-0.5px',
           lineHeight: '1.2',
           marginBottom: '16px',
@@ -143,37 +146,29 @@ export default function Manifiesto() {
 
         <p style={{
           fontSize: '16px',
-          color: 'var(--ink-3)',
+          color: 'rgba(255,255,255,0.45)',
           maxWidth: '400px',
           margin: '0 auto 40px',
           lineHeight: '1.75',
+          fontFamily: 'var(--font-sans)',
         }}>
           estamos construyendo algo que no existía:
           la práctica diaria de la independencia cognitiva.
         </p>
 
-        <WaitlistForm />
+        <WaitlistForm dark />
       </section>
 
       {/* FOOTER */}
       <footer style={{
-        padding: '24px 40px',
-        borderTop: '1px solid var(--border)',
+        padding: '16px 40px',
+        borderTop: '1px solid rgba(255,255,255,0.06)',
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        background: 'var(--fog-mid)',
         flexWrap: 'wrap',
         gap: '12px',
       }}>
-        <span style={{
-          fontFamily: 'var(--font-serif)',
-          fontSize: '18px',
-          color: 'var(--obsidian)',
-        }}>
-          noüs
-        </span>
-
         <a
           href="https://www.instagram.com/think.nous"
           target="_blank"
@@ -192,7 +187,7 @@ export default function Manifiesto() {
         <span style={{
           fontFamily: 'var(--font-mono)',
           fontSize: '11px',
-          color: 'var(--ink-3)',
+          color: 'rgba(255,255,255,0.25)',
           letterSpacing: '0.06em',
         }}>
           hecho con criterio propio.
