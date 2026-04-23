@@ -2,7 +2,7 @@
 
 import { useState, FormEvent } from 'react'
 
-export default function WaitlistForm() {
+export default function WaitlistForm({ dark }: { dark?: boolean }) {
   const [email, setEmail] = useState('')
   const [state, setState] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [message, setMessage] = useState('')
@@ -37,11 +37,7 @@ export default function WaitlistForm() {
 
   if (state === 'success') {
     return (
-      <div style={{
-        maxWidth: '480px',
-        margin: '0 auto',
-        textAlign: 'center',
-      }}>
+      <div style={{ maxWidth: '480px', margin: '0 auto', textAlign: 'center' }}>
         <p style={{
           fontFamily: 'var(--font-mono)',
           fontSize: '10px',
@@ -55,7 +51,7 @@ export default function WaitlistForm() {
         <p style={{
           fontFamily: 'var(--font-serif)',
           fontSize: '22px',
-          color: 'var(--obsidian)',
+          color: dark ? '#ffffff' : 'var(--obsidian)',
           letterSpacing: '-0.3px',
           lineHeight: '1.3',
           marginBottom: '16px',
@@ -64,7 +60,7 @@ export default function WaitlistForm() {
         </p>
         <p style={{
           fontSize: '14px',
-          color: 'var(--ink-3)',
+          color: dark ? 'rgba(255,255,255,0.40)' : 'var(--ink-3)',
           lineHeight: '1.7',
         }}>
           mientras tanto, empieza a notar cuántas veces al día
@@ -93,25 +89,27 @@ export default function WaitlistForm() {
           style={{
             flex: '1 1 240px',
             minWidth: '220px',
-            background: 'var(--white)',
-            border: '1px solid var(--border)',
+            background: dark ? 'rgba(255,255,255,0.06)' : 'var(--white)',
+            border: `1px solid ${dark ? 'rgba(255,255,255,0.12)' : 'var(--border)'}`,
             borderRadius: '10px',
             padding: '14px 20px',
             fontSize: '15px',
-            color: 'var(--obsidian)',
+            color: dark ? '#ffffff' : 'var(--obsidian)',
             fontFamily: 'var(--font-sans)',
             outline: 'none',
             transition: 'border-color 0.15s',
           }}
           onFocus={(e) => e.target.style.borderColor = 'var(--ginger)'}
-          onBlur={(e) => e.target.style.borderColor = 'var(--border)'}
+          onBlur={(e) => e.target.style.borderColor = dark ? 'rgba(255,255,255,0.12)' : 'var(--border)'}
         />
         <button
           type="submit"
           disabled={state === 'loading' || !email}
           style={{
-            background: state === 'loading' ? 'var(--ink-3)' : 'var(--obsidian)',
-            color: 'var(--white)',
+            background: state === 'loading'
+              ? 'rgba(255,255,255,0.15)'
+              : dark ? 'var(--ginger)' : 'var(--obsidian)',
+            color: '#ffffff',
             border: 'none',
             borderRadius: '10px',
             padding: '14px 24px',
@@ -133,7 +131,7 @@ export default function WaitlistForm() {
           textAlign: 'center',
           marginTop: '12px',
           fontSize: '13px',
-          color: '#A32D2D',
+          color: dark ? '#E07070' : '#A32D2D',
           fontFamily: 'var(--font-mono)',
         }}>
           {message}
@@ -144,7 +142,7 @@ export default function WaitlistForm() {
         textAlign: 'center',
         marginTop: '14px',
         fontSize: '12px',
-        color: 'var(--ink-3)',
+        color: dark ? 'rgba(255,255,255,0.25)' : 'var(--ink-3)',
         fontFamily: 'var(--font-mono)',
         letterSpacing: '0.04em',
       }}>

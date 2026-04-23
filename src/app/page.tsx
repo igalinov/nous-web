@@ -7,9 +7,10 @@ export default function Home() {
       display: 'flex',
       flexDirection: 'column',
       minHeight: '100vh',
+      background: 'var(--obsidian)',
     }}>
 
-      <Nav />
+      <Nav dark />
 
       {/* HERO */}
       <section style={{
@@ -20,63 +21,95 @@ export default function Home() {
         alignItems: 'center',
         textAlign: 'center',
         padding: '40px',
-        maxWidth: '800px',
-        margin: '0 auto',
         width: '100%',
       }}>
-        <p style={{
-          fontFamily: 'var(--font-mono)',
-          fontSize: '11px',
-          color: 'var(--ginger)',
-          letterSpacing: '0.16em',
-          textTransform: 'uppercase',
-          marginBottom: '20px',
-        }}>
-          disponible pronto
-        </p>
+        <div style={{ maxWidth: '800px', width: '100%' }}>
 
-        <h1 style={{
-          fontFamily: 'var(--font-serif)',
-          fontSize: 'clamp(56px, 9vw, 96px)',
-          color: 'var(--obsidian)',
-          letterSpacing: '-3px',
-          lineHeight: '1.0',
-          marginBottom: '24px',
-        }}>
-          tu mente.<br />sin niebla.
-        </h1>
+          <p style={{
+            fontFamily: 'var(--font-mono)',
+            fontSize: '10px',
+            color: 'var(--ginger)',
+            letterSpacing: '0.18em',
+            textTransform: 'uppercase',
+            marginBottom: '24px',
+          }}>
+            agudeza · criterio · consistencia
+          </p>
 
-        <p style={{
-          fontSize: '18px',
-          color: 'var(--ink-3)',
-          maxWidth: '480px',
-          margin: '0 auto 40px',
-          lineHeight: '1.75',
-        }}>
-          la práctica diaria de seguir pensando por ti mismo
-          en la era de la inteligencia artificial.
-        </p>
+          <h1 style={{
+            fontFamily: 'var(--font-serif)',
+            fontSize: 'clamp(56px, 9vw, 96px)',
+            color: '#ffffff',
+            letterSpacing: '-3px',
+            lineHeight: '1.0',
+            marginBottom: '28px',
+          }}>
+            tu mente.<br />sin niebla.
+          </h1>
 
-        <div id="waitlist" style={{ width: '100%' }}>
-          <WaitlistForm />
+          <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: '20px',
+            marginBottom: '32px',
+            flexWrap: 'wrap',
+          }}>
+            {(['7 min · diario', '4 áreas cognitivas', 'score 0 — 100'] as const).map((stat, i, arr) => (
+              <span key={stat} style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+                <span style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '11px',
+                  color: 'rgba(255,255,255,0.35)',
+                  letterSpacing: '0.08em',
+                }}>
+                  {stat}
+                </span>
+                {i < arr.length - 1 && (
+                  <span style={{
+                    width: '1px',
+                    height: '10px',
+                    background: 'rgba(255,255,255,0.12)',
+                    display: 'inline-block',
+                  }} />
+                )}
+              </span>
+            ))}
+          </div>
+
+          <p style={{
+            fontSize: '18px',
+            color: 'rgba(255,255,255,0.45)',
+            maxWidth: '460px',
+            margin: '0 auto 40px',
+            lineHeight: '1.75',
+            fontFamily: 'var(--font-sans)',
+          }}>
+            la práctica diaria de seguir pensando por ti mismo
+            en la era de la inteligencia artificial.
+          </p>
+
+          <div id="waitlist" style={{ width: '100%' }}>
+            <WaitlistForm dark />
+          </div>
+
         </div>
       </section>
 
       {/* FOOTER */}
       <footer style={{
-        padding: '24px 40px',
-        borderTop: '1px solid var(--border)',
+        padding: '20px 40px',
+        borderTop: '1px solid rgba(255,255,255,0.06)',
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        background: 'var(--fog-mid)',
         flexWrap: 'wrap',
         gap: '12px',
       }}>
         <span style={{
           fontFamily: 'var(--font-serif)',
           fontSize: '18px',
-          color: 'var(--obsidian)',
+          color: '#ffffff',
         }}>
           noüs
         </span>
@@ -99,7 +132,7 @@ export default function Home() {
         <span style={{
           fontFamily: 'var(--font-mono)',
           fontSize: '11px',
-          color: 'var(--ink-3)',
+          color: 'rgba(255,255,255,0.25)',
           letterSpacing: '0.06em',
         }}>
           hecho con criterio propio.
