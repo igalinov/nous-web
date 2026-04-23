@@ -12,14 +12,16 @@ export default function Nav({ active, dark }: { active?: 'manifiesto' | 'acceso-
       backdropFilter: 'blur(12px)',
       zIndex: 100,
     }}>
-      <a href="/" style={{
-        fontFamily: 'var(--font-serif)',
-        fontSize: '28px',
-        letterSpacing: '-0.5px',
-        color: dark ? '#ffffff' : 'var(--obsidian)',
-        textDecoration: 'none',
-      }}>
-        noüs
+      <a href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
+        <img
+          src="/logo.svg"
+          alt="noüs"
+          height={28}
+          style={{
+            filter: dark ? 'brightness(0) invert(1)' : 'none',
+            display: 'block',
+          }}
+        />
       </a>
       <div style={{ display: 'flex', alignItems: 'center', gap: '32px' }}>
         <a href="/manifiesto" style={{
