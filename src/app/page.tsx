@@ -1,5 +1,4 @@
 import Nav from '@/components/Nav'
-import WaitlistForm from '@/components/WaitlistForm'
 
 export default function Home() {
   return (
@@ -20,78 +19,47 @@ export default function Home() {
         justifyContent: 'center',
         alignItems: 'center',
         textAlign: 'center',
-        padding: '32px 40px',
+        padding: '40px',
         width: '100%',
       }}>
-        <div style={{ maxWidth: '800px', width: '100%' }}>
+        <div style={{ maxWidth: '840px', width: '100%' }}>
 
           <p style={{
             fontFamily: 'var(--font-mono)',
             fontSize: '10px',
             color: 'var(--ginger)',
-            letterSpacing: '0.18em',
+            letterSpacing: '0.2em',
             textTransform: 'uppercase',
-            marginBottom: '16px',
+            marginBottom: '32px',
           }}>
-            agudeza · criterio · consistencia
+            noüs no piensa por ti
           </p>
 
           <h1 style={{
             fontFamily: 'var(--font-serif)',
             fontSize: 'clamp(52px, 8.5vw, 92px)',
-            color: '#ffffff',
             letterSpacing: '-3px',
-            lineHeight: '1.0',
-            marginBottom: '20px',
+            lineHeight: '1.02',
+            marginBottom: '40px',
+            margin: '0 0 40px',
           }}>
-            tu mente.<br />sin niebla.
+            <span style={{ display: 'block', color: '#ffffff' }}>
+              delegar es fácil.
+            </span>
+            <span style={{ display: 'block', color: 'rgba(255,255,255,0.32)' }}>
+              pensar, cada vez menos.
+            </span>
           </h1>
 
-          <div style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            gap: '20px',
-            marginBottom: '24px',
-            flexWrap: 'wrap',
-          }}>
-            {(['7 min · diario', '4 áreas cognitivas', 'score 0 — 100'] as const).map((stat, i, arr) => (
-              <span key={stat} style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-                <span style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '11px',
-                  color: 'rgba(255,255,255,0.35)',
-                  letterSpacing: '0.08em',
-                }}>
-                  {stat}
-                </span>
-                {i < arr.length - 1 && (
-                  <span style={{
-                    width: '1px',
-                    height: '10px',
-                    background: 'rgba(255,255,255,0.12)',
-                    display: 'inline-block',
-                  }} />
-                )}
-              </span>
-            ))}
-          </div>
-
           <p style={{
-            fontSize: '17px',
-            color: 'rgba(255,255,255,0.45)',
-            maxWidth: '460px',
-            margin: '0 auto 32px',
-            lineHeight: '1.7',
-            fontFamily: 'var(--font-sans)',
+            fontFamily: 'var(--font-serif)',
+            fontSize: 'clamp(18px, 2.5vw, 24px)',
+            color: 'var(--ginger)',
+            letterSpacing: '-0.3px',
+            lineHeight: '1.3',
           }}>
-            la práctica diaria de seguir pensando por ti mismo
-            en la era de la inteligencia artificial.
+            siete minutos. para seguir siendo tú.
           </p>
-
-          <div id="waitlist" style={{ width: '100%' }}>
-            <WaitlistForm dark />
-          </div>
 
         </div>
       </section>
@@ -120,7 +88,6 @@ export default function Home() {
         >
           @think.nous
         </a>
-
         <span style={{
           fontFamily: 'var(--font-mono)',
           fontSize: '11px',
