@@ -124,7 +124,7 @@ export default function Home() {
         <span style={{
           fontFamily: 'var(--font-mono)',
           fontSize: '11px',
-          color: 'rgba(255,255,255,0.25)',
+          color: 'var(--ginger)',
           letterSpacing: '0.06em',
         }}>
           hecho con criterio propio.
