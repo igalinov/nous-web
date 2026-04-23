@@ -29,7 +29,6 @@ export default function Home() {
             fontSize: '10px',
             color: 'var(--ginger)',
             letterSpacing: '0.2em',
-            textTransform: 'uppercase',
             marginBottom: '32px',
           }}>
             noüs no piensa por ti
