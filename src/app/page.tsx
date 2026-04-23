@@ -58,7 +58,7 @@ export default function Home() {
             letterSpacing: '-0.3px',
             lineHeight: '1.3',
           }}>
-            siete minutos. para seguir siendo tú.
+            7 minutos al día. para seguir siendo tú.
           </p>
 
         </div>
