@@ -26,9 +26,9 @@ export default function Home() {
 
           <p style={{
             fontFamily: 'var(--font-mono)',
-            fontSize: '10px',
+            fontSize: '13px',
             color: 'var(--ginger)',
-            letterSpacing: '0.2em',
+            letterSpacing: '0.12em',
             marginBottom: '32px',
           }}>
             noüs no piensa por ti

@@ -35,7 +35,6 @@ export default function AccesoAnticipado() {
             fontSize: '10px',
             color: 'var(--ginger)',
             letterSpacing: '0.18em',
-            textTransform: 'uppercase',
             marginBottom: '24px',
           }}>
             noüs está en camino
