@@ -32,23 +32,23 @@ export default function AccesoAnticipado() {
 
           <p style={{
             fontFamily: 'var(--font-mono)',
-            fontSize: '10px',
+            fontSize: '12px',
             color: 'var(--ginger)',
-            letterSpacing: '0.18em',
-            marginBottom: '24px',
+            letterSpacing: '0.12em',
+            marginBottom: '20px',
           }}>
-            noüs está en camino
+            sé el primero en acceder.
           </p>
 
           <h1 style={{
             fontFamily: 'var(--font-serif)',
-            fontSize: 'clamp(36px, 6vw, 56px)',
+            fontSize: 'clamp(48px, 8vw, 80px)',
             color: '#ffffff',
-            letterSpacing: '-1.5px',
-            lineHeight: '1.1',
-            marginBottom: '20px',
+            letterSpacing: '-2px',
+            lineHeight: '1.0',
+            marginBottom: '24px',
           }}>
-            sé el primero en acceder.
+            está en camino.
           </h1>
 
           <p style={{

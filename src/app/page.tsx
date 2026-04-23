@@ -24,16 +24,6 @@ export default function Home() {
       }}>
         <div style={{ maxWidth: '840px', width: '100%' }}>
 
-          <p style={{
-            fontFamily: 'var(--font-mono)',
-            fontSize: '13px',
-            color: 'var(--ginger)',
-            letterSpacing: '0.12em',
-            marginBottom: '32px',
-          }}>
-            noüs no piensa por ti
-          </p>
-
           <h1 style={{
             fontFamily: 'var(--font-serif)',
             fontSize: 'clamp(52px, 8.5vw, 92px)',
