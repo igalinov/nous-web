@@ -1,4 +1,4 @@
-export default function Nav({ active, dark }: { active?: 'manifiesto'; dark?: boolean }) {
+export default function Nav({ active, dark }: { active?: 'manifiesto' | 'acceso-anticipado'; dark?: boolean }) {
   return (
     <nav style={{
       padding: '4px 40px',
@@ -25,22 +25,22 @@ export default function Nav({ active, dark }: { active?: 'manifiesto'; dark?: bo
         <a href="/manifiesto" style={{
           fontFamily: 'var(--font-mono)',
           fontSize: '12px',
-          color: dark
-            ? (active === 'manifiesto' ? '#ffffff' : 'rgba(255,255,255,0.35)')
-            : (active === 'manifiesto' ? 'var(--obsidian)' : 'var(--ink-3)'),
+          color: 'var(--ginger)',
           letterSpacing: '0.1em',
           textTransform: 'uppercase',
           textDecoration: 'none',
+          opacity: active === 'manifiesto' ? 1 : 0.7,
         }}>
           manifiesto
         </a>
-        <a href="#waitlist" style={{
+        <a href="/acceso-anticipado" style={{
           fontFamily: 'var(--font-mono)',
           fontSize: '12px',
           color: 'var(--ginger)',
           letterSpacing: '0.1em',
           textTransform: 'uppercase',
           textDecoration: 'none',
+          opacity: active === 'acceso-anticipado' ? 1 : 0.7,
         }}>
           acceso anticipado
         </a>

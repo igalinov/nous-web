@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import Nav from '@/components/Nav'
-import WaitlistForm from '@/components/WaitlistForm'
 
 export const metadata: Metadata = {
   title: 'manifiesto — noüs',
@@ -104,59 +103,6 @@ export default function Manifiesto() {
             piensa por ti mismo.
           </p>
         </div>
-      </section>
-
-      {/* DIVIDER */}
-      <div style={{
-        width: '1px',
-        height: '80px',
-        background: 'rgba(255,255,255,0.06)',
-        margin: '0 auto',
-      }} />
-
-      {/* CTA */}
-      <section id="waitlist" style={{
-        padding: '80px 40px 100px',
-        textAlign: 'center',
-        maxWidth: '640px',
-        margin: '0 auto',
-        width: '100%',
-      }}>
-        <p style={{
-          fontFamily: 'var(--font-mono)',
-          fontSize: '10px',
-          color: 'var(--ginger)',
-          letterSpacing: '0.16em',
-          textTransform: 'uppercase',
-          marginBottom: '20px',
-        }}>
-          noüs está en camino
-        </p>
-
-        <h2 style={{
-          fontFamily: 'var(--font-serif)',
-          fontSize: 'clamp(24px, 4vw, 32px)',
-          color: '#ffffff',
-          letterSpacing: '-0.5px',
-          lineHeight: '1.2',
-          marginBottom: '16px',
-        }}>
-          sé el primero en acceder.
-        </h2>
-
-        <p style={{
-          fontSize: '16px',
-          color: 'rgba(255,255,255,0.45)',
-          maxWidth: '400px',
-          margin: '0 auto 40px',
-          lineHeight: '1.75',
-          fontFamily: 'var(--font-sans)',
-        }}>
-          estamos construyendo algo que no existía:
-          la práctica diaria de la independencia cognitiva.
-        </p>
-
-        <WaitlistForm dark />
       </section>
 
       {/* FOOTER */}
