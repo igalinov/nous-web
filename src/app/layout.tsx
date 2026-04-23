@@ -5,6 +5,10 @@ export const metadata: Metadata = {
   title: 'noüs — piensa por ti mismo',
   description: 'La práctica diaria de seguir pensando por ti mismo en la era de la inteligencia artificial. Siete minutos. Cada día. Para que tus ideas sigan siendo tuyas.',
   metadataBase: new URL('https://noüs.es'),
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+  },
   openGraph: {
     title: 'noüs — piensa por ti mismo',
     description: 'La práctica diaria de la independencia cognitiva en la era de la IA.',
