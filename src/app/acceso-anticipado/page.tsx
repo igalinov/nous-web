@@ -18,14 +18,13 @@ export default function AccesoAnticipado() {
 
       <Nav active="acceso-anticipado" dark />
 
-      <section style={{
+      <section className="acceso-pad" style={{
         flex: 1,
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
         textAlign: 'center',
-        padding: '32px 40px',
         width: '100%',
       }}>
         <div style={{ maxWidth: '640px', width: '100%' }}>
@@ -40,11 +39,10 @@ export default function AccesoAnticipado() {
             sé el primero en acceder.
           </p>
 
-          <h1 style={{
+          <h1 className="acceso-h1" style={{
             fontFamily: 'var(--font-serif)',
-            fontSize: 'clamp(48px, 8vw, 80px)',
+            fontSize: 'clamp(40px, 8vw, 80px)',
             color: '#ffffff',
-            letterSpacing: '-2px',
             lineHeight: '1.0',
             marginBottom: '24px',
           }}>
@@ -52,7 +50,7 @@ export default function AccesoAnticipado() {
           </h1>
 
           <p style={{
-            fontSize: '17px',
+            fontSize: 'clamp(15px, 2vw, 17px)',
             color: 'rgba(255,255,255,0.45)',
             maxWidth: '400px',
             margin: '0 auto 40px',
@@ -70,8 +68,7 @@ export default function AccesoAnticipado() {
         </div>
       </section>
 
-      <footer style={{
-        padding: '16px 40px',
+      <footer className="footer-pad" style={{
         borderTop: '1px solid rgba(255,255,255,0.06)',
         display: 'flex',
         justifyContent: 'space-between',

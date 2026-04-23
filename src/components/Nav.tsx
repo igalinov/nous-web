@@ -1,7 +1,6 @@
 export default function Nav({ active, dark }: { active?: 'manifiesto' | 'acceso-anticipado'; dark?: boolean }) {
   return (
-    <nav style={{
-      padding: '4px 40px',
+    <nav className="nav-wrap" style={{
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center',
@@ -16,14 +15,13 @@ export default function Nav({ active, dark }: { active?: 'manifiesto' | 'acceso-
         <img
           src="/logo.svg"
           alt="noüs"
-          height={100}
+          className="nav-logo"
           style={{
-            display: 'block',
             filter: dark ? 'invert(1)' : 'none',
           }}
         />
       </a>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '32px' }}>
+      <div className="nav-links">
         <a href="/manifiesto" style={{
           fontFamily: 'var(--font-mono)',
           fontSize: '12px',
@@ -31,7 +29,6 @@ export default function Nav({ active, dark }: { active?: 'manifiesto' | 'acceso-
             ? (active === 'manifiesto' ? 'rgba(255,255,255,0.85)' : 'rgba(255,255,255,0.40)')
             : (active === 'manifiesto' ? 'var(--obsidian)' : 'var(--ink-3)'),
           letterSpacing: '0.1em',
-          textTransform: 'uppercase',
           textDecoration: 'none',
         }}>
           manifiesto
@@ -43,7 +40,6 @@ export default function Nav({ active, dark }: { active?: 'manifiesto' | 'acceso-
             ? (active === 'acceso-anticipado' ? 'rgba(255,255,255,0.85)' : 'rgba(255,255,255,0.40)')
             : (active === 'acceso-anticipado' ? 'var(--obsidian)' : 'var(--ink-3)'),
           letterSpacing: '0.1em',
-          textTransform: 'uppercase',
           textDecoration: 'none',
         }}>
           acceso anticipado

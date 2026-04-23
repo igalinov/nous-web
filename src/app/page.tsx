@@ -12,24 +12,21 @@ export default function Home() {
       <Nav dark />
 
       {/* HERO */}
-      <section style={{
+      <section className="page-pad" style={{
         flex: 1,
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
         textAlign: 'center',
-        padding: '40px',
         width: '100%',
       }}>
         <div style={{ maxWidth: '840px', width: '100%' }}>
 
-          <h1 style={{
+          <h1 className="hero-h1" style={{
             fontFamily: 'var(--font-serif)',
-            fontSize: 'clamp(52px, 8.5vw, 92px)',
-            letterSpacing: '-3px',
+            fontSize: 'clamp(42px, 8.5vw, 92px)',
             lineHeight: '1.02',
-            marginBottom: '40px',
             margin: '0 0 40px',
           }}>
             <span style={{ display: 'block', color: '#ffffff' }}>
@@ -42,7 +39,7 @@ export default function Home() {
 
           <p style={{
             fontFamily: 'var(--font-serif)',
-            fontSize: 'clamp(18px, 2.5vw, 24px)',
+            fontSize: 'clamp(17px, 2.5vw, 24px)',
             color: 'var(--ginger)',
             letterSpacing: '-0.3px',
             lineHeight: '1.3',
@@ -54,8 +51,7 @@ export default function Home() {
       </section>
 
       {/* FOOTER */}
-      <footer style={{
-        padding: '16px 40px',
+      <footer className="footer-pad" style={{
         borderTop: '1px solid rgba(255,255,255,0.06)',
         display: 'flex',
         justifyContent: 'space-between',

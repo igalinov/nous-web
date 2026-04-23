@@ -50,8 +50,7 @@ export default function Manifiesto() {
       <Nav active="manifiesto" dark />
 
       {/* MANIFIESTO */}
-      <section style={{
-        padding: '80px 40px',
+      <section className="section-pad" style={{
         maxWidth: '640px',
         margin: '0 auto',
         width: '100%',
@@ -62,7 +61,7 @@ export default function Manifiesto() {
               key={i}
               style={{
                 fontFamily: 'var(--font-serif)',
-                fontSize: 'clamp(18px, 3vw, 24px)',
+                fontSize: 'clamp(17px, 3vw, 24px)',
                 lineHeight: '1.35',
                 letterSpacing: '-0.2px',
                 color: line.accent
@@ -81,7 +80,7 @@ export default function Manifiesto() {
 
           <p style={{
             fontFamily: 'var(--font-serif)',
-            fontSize: 'clamp(28px, 5vw, 40px)',
+            fontSize: 'clamp(26px, 5vw, 40px)',
             color: 'var(--ginger)',
             letterSpacing: '-1px',
             lineHeight: '1.1',
@@ -94,8 +93,7 @@ export default function Manifiesto() {
       </section>
 
       {/* FOOTER */}
-      <footer style={{
-        padding: '16px 40px',
+      <footer className="footer-pad" style={{
         borderTop: '1px solid rgba(255,255,255,0.06)',
         display: 'flex',
         justifyContent: 'space-between',

@@ -40,3 +40,26 @@ body {
   background: var(--ginger);
   color: var(--white);
 }
+
+/* Responsive utilities */
+.nav-wrap       { padding: 4px 40px; }
+.nav-logo       { height: 100px; display: block; }
+.nav-links      { display: flex; align-items: center; gap: 32px; }
+.page-pad       { padding: 40px; }
+.section-pad    { padding: 80px 40px; }
+.acceso-pad     { padding: 32px 40px; }
+.footer-pad     { padding: 16px 40px; }
+.hero-h1        { letter-spacing: -3px; }
+.acceso-h1      { letter-spacing: -2px; }
+
+@media (max-width: 640px) {
+  .nav-wrap     { padding: 4px 20px; }
+  .nav-logo     { height: 56px; }
+  .nav-links    { gap: 20px; }
+  .page-pad     { padding: 32px 20px; }
+  .section-pad  { padding: 48px 20px; }
+  .acceso-pad   { padding: 32px 20px; }
+  .footer-pad   { padding: 16px 20px; }
+  .hero-h1      { letter-spacing: -1px; }
+  .acceso-h1    { letter-spacing: -1px; }
+}
