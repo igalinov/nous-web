@@ -21,7 +21,7 @@ create table waitlist (
   id uuid default gen_random_uuid() primary key,
   email text unique not null,
   created_at timestamptz default now(),
-  source text default 'nous.es'
+  source text default 'noüs.es'
 );
 
 -- Solo inserciones anónimas, sin lectura
@@ -32,7 +32,7 @@ create policy "insert only" on waitlist for insert to anon with check (true);
 
 ### Resend
 1. Crea cuenta en resend.com
-2. Verifica el dominio nous.es (añade los DNS records que te indican)
+2. Verifica el dominio noüs.es (añade los DNS records que te indican)
 3. Crea una API key
 4. Cópiala en `.env.local`
 

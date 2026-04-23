@@ -118,13 +118,13 @@ const welcomeEmail = (email: string) => ({
             color: #0a0a0a;
             margin: 0;
           ">noüs</p>
-          <a href="https://nous.es" style="
+          <a href="https://noüs.es" style="
             font-family: monospace;
             font-size: 11px;
             color: #BE5504;
             text-decoration: none;
             letter-spacing: 0.08em;
-          ">nous.es</a>
+          ">noüs.es</a>
         </div>
       </div>
     </body>
@@ -165,7 +165,7 @@ export async function POST(request: NextRequest) {
       .insert([{
         email: normalizedEmail,
         created_at: new Date().toISOString(),
-        source: 'nous.es',
+        source: 'noüs.es',
       }])
 
     if (dbError) throw dbError

@@ -4,11 +4,11 @@ import './globals.css'
 export const metadata: Metadata = {
   title: 'noüs — piensa por ti mismo',
   description: 'La práctica diaria de seguir pensando por ti mismo en la era de la inteligencia artificial. Siete minutos. Cada día. Para que tus ideas sigan siendo tuyas.',
-  metadataBase: new URL('https://nous.es'),
+  metadataBase: new URL('https://noüs.es'),
   openGraph: {
     title: 'noüs — piensa por ti mismo',
     description: 'La práctica diaria de la independencia cognitiva en la era de la IA.',
-    url: 'https://nous.es',
+    url: 'https://noüs.es',
     siteName: 'noüs',
     locale: 'es_ES',
     type: 'website',
