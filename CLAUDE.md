@@ -120,6 +120,8 @@ Incorrecto: "¡¡Increíble!! 🎉" / "¡No rompas tu racha! 🔥"
 - Fix aplicado: maybeSingle() para evitar 406 en Supabase
 - Fix aplicado: RESEND_FROM_EMAIL = hola@xn--nos-ioa.es
 - Estética: obsidian full en las 3 páginas — diseño dark aprobado
+- Logo SVG en nav implementado y funcionando — ver detalles en sección nav
+- Web totalmente responsive — breakpoint 640px
 
 ### marketing ✅ definido
 - Plan de marketing LinkedIn + Instagram completado
@@ -280,12 +282,17 @@ Cada página tiene exactamente un trabajo. No mezclar:
 - Footer: rgba(255,255,255,0.50) — nunca ginger en el footer
 
 ### nav web — valores aprobados
-- noüs wordmark: DM Serif 28px, blanco, enlaza a /
+- Logo: SVG vectorial (`public/logo.svg`) — no texto DM Serif
+  - Desktop: 100px de alto
+  - Móvil (< 640px): 56px de alto
+  - Dark mode: `filter: invert(1)` — letras blancas sobre transparente
+  - El SVG no tiene rectángulo de fondo — solo los trazos de las letras con `fill="currentColor"`
 - Links "manifiesto" y "acceso anticipado": mismo color, nunca ginger
   - Activo: rgba(255,255,255,0.85)
   - Inactivo: rgba(255,255,255,0.40)
-- Padding vertical: 4px — barra muy estrecha
-- Nunca noüs wordmark en el footer web
+- Padding: 4px 40px desktop · 4px 20px móvil — barra estrecha
+- Gap entre links: 32px desktop · 20px móvil
+- Nunca noüs wordmark de texto en el footer web
 
 ### hero — copy y diseño definitivos y aprobados
 ```
@@ -323,7 +330,15 @@ Nunca ginger en links de nav. Nunca ginger en cuerpo de texto.
 ### copy web — reglas
 - Minimizar repetición del nombre noüs dentro de una misma página
 - Nunca `textTransform: uppercase` en copy — minúsculas siempre en CSS y en texto
-- El nombre noüs aparece una sola vez por página: en el wordmark del nav
+- El nombre noüs aparece una sola vez por página: en el logo del nav
+
+### responsive — decisiones aprobadas
+- Breakpoint único: 640px
+- Estrategia: inline styles para todo excepto responsive — clases CSS en globals.css
+- Clases definidas: `.nav-wrap` `.nav-logo` `.nav-links` `.page-pad` `.section-pad` `.acceso-pad` `.footer-pad` `.hero-h1` `.acceso-h1`
+- Padding lateral: 40px desktop → 20px móvil en todas las páginas
+- Letter-spacing en H1: ajuste en móvil para evitar cortes de palabra
+- Tamaños de fuente: ya usan `clamp()` — escalan solos sin clases adicionales
 
 ---
 
@@ -567,6 +582,6 @@ piensa por ti mismo.
 
 ---
 
-*CLAUDE.md · noüs · v3.1 · abril 2026*
+*CLAUDE.md · noüs · v3.2 · abril 2026*
 *Solo contiene decisiones ya tomadas. No especular sobre funcionalidad no
 definida. Actualizar cuando se tomen nuevas decisiones de producto o arquitectura.*
