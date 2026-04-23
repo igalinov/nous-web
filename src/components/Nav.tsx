@@ -25,22 +25,24 @@ export default function Nav({ active, dark }: { active?: 'manifiesto' | 'acceso-
         <a href="/manifiesto" style={{
           fontFamily: 'var(--font-mono)',
           fontSize: '12px',
-          color: 'var(--ginger)',
+          color: dark
+            ? (active === 'manifiesto' ? 'rgba(255,255,255,0.85)' : 'rgba(255,255,255,0.40)')
+            : (active === 'manifiesto' ? 'var(--obsidian)' : 'var(--ink-3)'),
           letterSpacing: '0.1em',
           textTransform: 'uppercase',
           textDecoration: 'none',
-          opacity: active === 'manifiesto' ? 1 : 0.7,
         }}>
           manifiesto
         </a>
         <a href="/acceso-anticipado" style={{
           fontFamily: 'var(--font-mono)',
           fontSize: '12px',
-          color: 'var(--ginger)',
+          color: dark
+            ? (active === 'acceso-anticipado' ? 'rgba(255,255,255,0.85)' : 'rgba(255,255,255,0.40)')
+            : (active === 'acceso-anticipado' ? 'var(--obsidian)' : 'var(--ink-3)'),
           letterSpacing: '0.1em',
           textTransform: 'uppercase',
           textDecoration: 'none',
-          opacity: active === 'acceso-anticipado' ? 1 : 0.7,
         }}>
           acceso anticipado
         </a>
