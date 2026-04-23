@@ -18,8 +18,8 @@ export default function Nav({ active, dark }: { active?: 'manifiesto' | 'acceso-
           alt="noüs"
           height={28}
           style={{
-            filter: dark ? 'brightness(0) invert(1)' : 'none',
             display: 'block',
+            filter: dark ? 'invert(1)' : 'none',
           }}
         />
       </a>
