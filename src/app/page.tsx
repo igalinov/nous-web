@@ -50,30 +50,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FOOTER */}
-      <footer className="footer-pad" style={{
-        borderTop: '1px solid rgba(255,255,255,0.06)',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        flexWrap: 'wrap',
-        gap: '12px',
-      }}>
-        <a
-          href="https://www.instagram.com/think.nous"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            fontFamily: 'var(--font-mono)',
-            fontSize: '11px',
-            color: 'rgba(255,255,255,0.50)',
-            textDecoration: 'none',
-            letterSpacing: '0.08em',
-          }}
-        >
-          @think.nous
-        </a>
-      </footer>
 
     </main>
   )
