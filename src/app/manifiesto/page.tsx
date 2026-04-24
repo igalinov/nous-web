@@ -116,14 +116,6 @@ export default function Manifiesto() {
           @think.nous
         </a>
 
-        <span style={{
-          fontFamily: 'var(--font-mono)',
-          fontSize: '11px',
-          color: 'rgba(255,255,255,0.50)',
-          letterSpacing: '0.06em',
-        }}>
-          hecho con criterio propio.
-        </span>
       </footer>
 
     </main>
