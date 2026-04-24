@@ -54,20 +54,10 @@ const welcomeEmail = (email: string) => ({
                     no te vamos a saturar. solo te escribiremos cuando tengamos algo que valga la pena decir.
                   </p>
 
-                  <!-- CALLOUT -->
-                  <table width="100%" cellpadding="0" cellspacing="0">
-                    <tr>
-                      <td style="border-left: 2px solid #BE5504; padding: 16px 20px; background-color: rgba(255,255,255,0.03);">
-                        <p style="font-family: monospace; font-size: 10px; color: #BE5504; letter-spacing: 0.1em; margin: 0 0 10px;">mientras tanto.</p>
-                        <p style="font-family: Georgia, serif; font-size: 15px; color: rgba(255,255,255,0.60); line-height: 1.65; margin: 0 0 10px;">
-                          la próxima vez que vayas a preguntarle algo a una IA, para un momento. inténtalo tú primero. aunque sea 30 segundos. aunque tu respuesta no sea perfecta.
-                        </p>
-                        <p style="font-family: Georgia, serif; font-size: 14px; color: rgba(255,255,255,0.30); line-height: 1.6; margin: 0;">
-                          ese esfuerzo es exactamente lo que noüs va a entrenar.
-                        </p>
-                      </td>
-                    </tr>
-                  </table>
+                  <p style="font-family: monospace; font-size: 10px; color: rgba(255,255,255,0.28); letter-spacing: 0.1em; margin: 0 0 10px;">mientras tanto.</p>
+                  <p style="font-family: Georgia, serif; font-size: 14px; color: rgba(255,255,255,0.32); line-height: 1.75; margin: 0;">
+                    la próxima vez que vayas a preguntarle algo a una IA, para un momento. inténtalo tú primero. aunque sea 30 segundos. aunque tu respuesta no sea perfecta. ese esfuerzo es exactamente lo que noüs va a entrenar.
+                  </p>
                 </td>
               </tr>
 
