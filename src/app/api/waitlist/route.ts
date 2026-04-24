@@ -54,8 +54,9 @@ const welcomeEmail = (email: string) => ({
                     no te vamos a saturar. solo te escribiremos cuando tengamos algo que valga la pena decir.
                   </p>
 
-                  <p style="font-family: monospace; font-size: 10px; color: rgba(255,255,255,0.28); letter-spacing: 0.1em; margin: 0 0 10px;">mientras tanto.</p>
-                  <p style="font-family: Georgia, serif; font-size: 14px; color: rgba(255,255,255,0.32); line-height: 1.75; margin: 0;">
+                  <div style="height: 1px; background-color: rgba(255,255,255,0.06); margin-bottom: 24px;"></div>
+                  <p style="font-family: monospace; font-size: 10px; color: #BE5504; letter-spacing: 0.1em; margin: 0 0 10px;">mientras tanto.</p>
+                  <p style="font-family: Georgia, serif; font-size: 14px; color: rgba(255,255,255,0.45); line-height: 1.75; margin: 0;">
                     la próxima vez que vayas a preguntarle algo a una IA, para un momento. inténtalo tú primero. aunque sea 30 segundos. aunque tu respuesta no sea perfecta. ese esfuerzo es exactamente lo que noüs va a entrenar.
                   </p>
                 </td>
