@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'noüs — piensa por ti mismo',
+  title: 'noüs',
   description: 'La práctica diaria de seguir pensando por ti mismo en la era de la inteligencia artificial. Siete minutos. Cada día. Para que tus ideas sigan siendo tuyas.',
   metadataBase: new URL('https://noüs.es'),
   icons: {
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     shortcut: '/favicon.ico',
   },
   openGraph: {
-    title: 'noüs — piensa por ti mismo',
+    title: 'noüs',
     description: 'La práctica diaria de la independencia cognitiva en la era de la IA.',
     url: 'https://noüs.es',
     siteName: 'noüs',
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'noüs — piensa por ti mismo',
+    title: 'noüs',
     description: 'La práctica diaria de la independencia cognitiva en la era de la IA.',
   },
   robots: {

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Nav from '@/components/Nav'
 
 export const metadata: Metadata = {
-  title: 'manifiesto — noüs',
+  title: 'noüs',
   description: 'Hay personas que piensan. Y hay personas que delegan su pensamiento. La diferencia no es la inteligencia. Es la práctica.',
 }
 

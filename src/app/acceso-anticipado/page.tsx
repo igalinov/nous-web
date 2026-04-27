@@ -3,7 +3,7 @@ import Nav from '@/components/Nav'
 import WaitlistForm from '@/components/WaitlistForm'
 
 export const metadata: Metadata = {
-  title: 'acceso anticipado — noüs',
+  title: 'noüs',
   description: 'Sé el primero en acceder a noüs. La práctica diaria de la independencia cognitiva.',
 }
 
