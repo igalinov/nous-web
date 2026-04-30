@@ -9,7 +9,7 @@ const supabase = createClient(
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
-const welcomeEmail = (email: string) => ({
+const welcomeEmail = (email: string, userNumber: number) => ({
   from: process.env.RESEND_FROM_EMAIL!,
   to: email,
   subject: 'ya estás dentro.',
@@ -33,6 +33,22 @@ const welcomeEmail = (email: string) => ({
                   <p style="font-family: monospace; font-size: 11px; color: #BE5504; letter-spacing: 0.12em; margin: 0 0 28px;">noüs · acceso anticipado</p>
                   <p style="font-family: Georgia, serif; font-size: 44px; color: #ffffff; letter-spacing: -2px; line-height: 1.0; margin: 0;">ya estás</p>
                   <p style="font-family: Georgia, serif; font-size: 44px; color: rgba(255,255,255,0.28); letter-spacing: -2px; line-height: 1.0; margin: 0 0 48px;">dentro.</p>
+                </td>
+              </tr>
+
+              <!-- DIVIDER -->
+              <tr>
+                <td style="padding: 0 40px;">
+                  <div style="height: 1px; background-color: rgba(255,255,255,0.06);"></div>
+                </td>
+              </tr>
+
+              <!-- NUMBER -->
+              <tr>
+                <td style="padding: 40px 40px 0;">
+                  <p style="font-family: monospace; font-size: 10px; color: rgba(255,255,255,0.28); letter-spacing: 0.12em; margin: 0 0 8px;">tu número.</p>
+                  <p style="font-family: Georgia, serif; font-size: 72px; color: #BE5504; letter-spacing: -3px; line-height: 1.0; margin: 0 0 10px;">${userNumber}</p>
+                  <p style="font-family: Georgia, serif; font-size: 15px; color: rgba(255,255,255,0.40); letter-spacing: -0.2px; margin: 0 0 40px;">así de temprano llegaste.</p>
                 </td>
               </tr>
 
@@ -102,7 +118,6 @@ export async function POST(request: NextRequest) {
 
     const normalizedEmail = email.toLowerCase().trim()
 
-    // Fix 406: use maybeSingle() instead of single() to avoid error when no row found
     const { data: existing } = await supabase
       .from('waitlist')
       .select('id')
@@ -127,8 +142,15 @@ export async function POST(request: NextRequest) {
       throw dbError
     }
 
+    // Get total count to assign user number (offset 62 so first user = 63)
+    const { count } = await supabase
+      .from('waitlist')
+      .select('*', { count: 'exact', head: true })
+
+    const userNumber = (count ?? 1) + 62
+
     // Send welcome email via Resend
-    const { error: emailError } = await resend.emails.send(welcomeEmail(normalizedEmail))
+    const { error: emailError } = await resend.emails.send(welcomeEmail(normalizedEmail, userNumber))
 
     if (emailError) {
       console.error('Resend error:', JSON.stringify(emailError))
