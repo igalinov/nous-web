@@ -46,7 +46,7 @@ const welcomeEmail = (email: string, userNumber: number) => ({
               <!-- NUMBER -->
               <tr>
                 <td style="padding: 40px 40px 0;">
-                  <p style="font-family: Georgia, serif; font-size: 80px; color: #BE5504; letter-spacing: -4px; line-height: 1.0; margin: 0 0 14px;">${userNumber}</p>
+                  <p style="font-family: Palatino, 'Palatino Linotype', serif; font-size: 80px; color: #BE5504; letter-spacing: -4px; line-height: 1.0; margin: 0 0 14px;">${userNumber}</p>
                   <p style="font-family: Georgia, serif; font-size: 15px; color: rgba(255,255,255,0.70); letter-spacing: -0.2px; margin: 0 0 6px;">este número es tuyo para siempre.</p>
                   <p style="font-family: Georgia, serif; font-size: 14px; color: rgba(255,255,255,0.32); letter-spacing: -0.1px; margin: 0 0 40px;">solo ${userNumber - 1} personas llegaron antes que tú.</p>
                 </td>
