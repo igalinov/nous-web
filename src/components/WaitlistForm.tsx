@@ -58,15 +58,6 @@ export default function WaitlistForm({ dark }: { dark?: boolean }) {
           te avisamos cuando noüs esté listo.
         </p>
         <p style={{
-          fontSize: '14px',
-          color: dark ? 'rgba(255,255,255,0.40)' : 'var(--ink-3)',
-          lineHeight: '1.7',
-          marginBottom: '20px',
-        }}>
-          mientras tanto, empieza a notar cuántas veces al día
-          alguien — o algo — piensa por ti.
-        </p>
-        <p style={{
           fontFamily: 'var(--font-mono)',
           fontSize: '11px',
           color: dark ? 'rgba(255,255,255,0.22)' : 'var(--ink-3)',
@@ -74,7 +65,7 @@ export default function WaitlistForm({ dark }: { dark?: boolean }) {
           letterSpacing: '0.02em',
         }}>
           si no ves nuestro email, revisa la carpeta de spam.<br />
-          somos una startup — a veces llegamos por ahí primero.
+          somos una startup y a veces llegamos por ahí primero.
         </p>
       </div>
     )
