@@ -46,9 +46,9 @@ const welcomeEmail = (email: string, userNumber: number) => ({
               <!-- NUMBER -->
               <tr>
                 <td style="padding: 40px 40px 0;">
-                  <p style="font-family: monospace; font-size: 10px; color: rgba(255,255,255,0.28); letter-spacing: 0.12em; margin: 0 0 8px;">tu número.</p>
-                  <p style="font-family: Georgia, serif; font-size: 72px; color: #BE5504; letter-spacing: -3px; line-height: 1.0; margin: 0 0 10px;">${userNumber}</p>
-                  <p style="font-family: Georgia, serif; font-size: 15px; color: rgba(255,255,255,0.40); letter-spacing: -0.2px; margin: 0 0 40px;">así de temprano llegaste.</p>
+                  <p style="font-family: Georgia, serif; font-size: 80px; color: #BE5504; letter-spacing: -4px; line-height: 1.0; margin: 0 0 14px;">${userNumber}</p>
+                  <p style="font-family: Georgia, serif; font-size: 15px; color: rgba(255,255,255,0.70); letter-spacing: -0.2px; margin: 0 0 6px;">este número es tuyo para siempre.</p>
+                  <p style="font-family: Georgia, serif; font-size: 14px; color: rgba(255,255,255,0.32); letter-spacing: -0.1px; margin: 0 0 40px;">solo ${userNumber - 1} personas llegaron antes que tú.</p>
                 </td>
               </tr>
 
@@ -128,26 +128,34 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ message: 'Ya estás en la lista.' }, { status: 200 })
     }
 
-    // Insert into Supabase
-    const { error: dbError } = await supabase
+    // Insert and get the new row id
+    const { data: inserted, error: dbError } = await supabase
       .from('waitlist')
       .insert([{
         email: normalizedEmail,
         created_at: new Date().toISOString(),
         source: 'noüs.es',
       }])
+      .select('id')
+      .single()
 
     if (dbError) {
       console.error('Supabase insert error:', dbError)
       throw dbError
     }
 
-    // Get total count to assign user number (offset 62 so first user = 63)
+    // Count all rows (includes new user) and calculate permanent number
     const { count } = await supabase
       .from('waitlist')
       .select('*', { count: 'exact', head: true })
 
     const userNumber = (count ?? 1) + 62
+
+    // Store the number permanently on the user's row
+    await supabase
+      .from('waitlist')
+      .update({ user_number: userNumber })
+      .eq('id', inserted.id)
 
     // Send welcome email via Resend
     const { error: emailError } = await resend.emails.send(welcomeEmail(normalizedEmail, userNumber))
