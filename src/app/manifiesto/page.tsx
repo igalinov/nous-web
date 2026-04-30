@@ -57,12 +57,12 @@ const manifesto = [
 
   // BLOQUE 5 — la posición de noüs
   { text: 'no somos anti inteligencia artificial.', muted: false, spacer: true },
-  { text: 'la ia es la herramienta más poderosa que ha existido.', muted: true },
+  { text: 'la IA es la herramienta más poderosa que ha existido.', muted: true },
   { text: 'úsala.', muted: false },
 
   { text: 'pero no dejes que piense por ti.', muted: false, spacer: true },
   { text: 'hay una diferencia enorme', muted: true },
-  { text: 'entre usar la ia para hacer más', muted: true },
+  { text: 'entre usar la IA para hacer más', muted: true },
   { text: 'y usarla para pensar menos.', muted: true },
 
   { text: 'el cerebro es un músculo.', muted: false, spacer: true },
