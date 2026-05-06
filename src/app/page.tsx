@@ -50,6 +50,47 @@ export default function Home() {
         </div>
       </section>
 
+      {/* QUÉ ES NOÜS */}
+      <section className="page-pad" style={{
+        borderTop: '1px solid rgba(255,255,255,0.06)',
+        paddingTop: '64px',
+        paddingBottom: '80px',
+        maxWidth: '640px',
+        margin: '0 auto',
+        width: '100%',
+        boxSizing: 'border-box',
+      }}>
+        <p style={{
+          fontFamily: 'var(--font-mono)',
+          fontSize: '11px',
+          color: 'var(--ginger)',
+          letterSpacing: '0.12em',
+          marginBottom: '20px',
+        }}>
+          ¿qué es noüs?
+        </p>
+        <p style={{
+          fontFamily: 'var(--font-serif)',
+          fontSize: 'clamp(20px, 3.5vw, 28px)',
+          color: 'rgba(255,255,255,0.85)',
+          lineHeight: '1.35',
+          letterSpacing: '-0.3px',
+          marginBottom: '32px',
+        }}>
+          noüs es una app para que tu criterio<br />
+          siga siendo tuyo.<br />
+          siete minutos al día. cada día.
+        </p>
+        <a href="/acceso-anticipado" style={{
+          fontFamily: 'var(--font-mono)',
+          fontSize: '12px',
+          color: 'var(--ginger)',
+          letterSpacing: '0.08em',
+          textDecoration: 'none',
+        }}>
+          quiero acceso anticipado →
+        </a>
+      </section>
 
     </main>
   )
