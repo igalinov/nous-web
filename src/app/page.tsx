@@ -37,16 +37,6 @@ export default function Home() {
             </span>
           </h1>
 
-          <p style={{
-            fontFamily: 'var(--font-serif)',
-            fontSize: 'clamp(17px, 2.5vw, 24px)',
-            color: 'var(--ginger)',
-            letterSpacing: '-0.3px',
-            lineHeight: '1.3',
-          }}>
-            siete minutos al día. para seguir siendo tú.
-          </p>
-
         </div>
       </section>
 
