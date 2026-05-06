@@ -165,6 +165,14 @@ export async function POST(request: NextRequest) {
       // Don't fail the request — user is registered even if email fails
     }
 
+    // Notify founder of new signup
+    await resend.emails.send({
+      from: process.env.RESEND_FROM_EMAIL!,
+      to: 'i.galinov@gmail.com',
+      subject: `nuevo registro #${userNumber} — ${normalizedEmail}`,
+      html: `<p style="font-family: monospace; font-size: 14px;">nuevo usuario en noüs.es</p><p style="font-family: monospace; font-size: 14px;"><strong>#${userNumber}</strong> — ${normalizedEmail}</p>`,
+    })
+
     return NextResponse.json({ message: 'Bienvenido.' }, { status: 200 })
 
   } catch (error) {
