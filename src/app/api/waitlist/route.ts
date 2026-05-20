@@ -16,7 +16,7 @@ const supabaseAdmin = createClient(
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
-const welcomeEmail = (email: string, userNumber: number) => ({
+const welcomeEmail = (email: string, userNumber: number, referralCode: string) => ({
   from: process.env.RESEND_FROM_EMAIL!,
   to: email,
   subject: 'ya estás dentro.',
@@ -82,6 +82,20 @@ const welcomeEmail = (email: string, userNumber: number) => ({
                   <p style="font-family: Georgia, serif; font-size: 14px; color: rgba(255,255,255,0.45); line-height: 1.75; margin: 0;">
                     la próxima vez que vayas a preguntarle algo a una IA, para un momento. inténtalo tú primero. aunque sea 30 segundos. aunque tu respuesta no sea perfecta. ese esfuerzo es exactamente lo que noüs va a entrenar.
                   </p>
+                </td>
+              </tr>
+
+              <!-- REFERRAL -->
+              <tr>
+                <td style="padding: 0 40px;">
+                  <div style="height: 1px; background-color: rgba(255,255,255,0.06);"></div>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding: 32px 40px;">
+                  <p style="font-family: monospace; font-size: 10px; color: #BE5504; letter-spacing: 0.12em; margin: 0 0 14px;">comparte y sube posiciones.</p>
+                  <p style="font-family: Georgia, serif; font-size: 14px; color: rgba(255,255,255,0.50); line-height: 1.7; margin: 0 0 16px;">invita a 3 personas con tu link y garantizas tu acceso anticipado.</p>
+                  <a href="https://xn--nos-ioa.es/acceso-anticipado?ref=${referralCode}" style="font-family: monospace; font-size: 12px; color: #BE5504; text-decoration: none; letter-spacing: 0.04em; background: rgba(190,85,4,0.10); border: 1px solid rgba(190,85,4,0.30); border-radius: 6px; padding: 10px 16px; display: inline-block;">noüs.es/acceso-anticipado?ref=${referralCode}</a>
                 </td>
               </tr>
 
@@ -186,7 +200,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Send welcome email via Resend
-    const { error: emailError } = await resend.emails.send(welcomeEmail(normalizedEmail, userNumber))
+    const { error: emailError } = await resend.emails.send(welcomeEmail(normalizedEmail, userNumber, inserted.referral_code))
 
     if (emailError) {
       console.error('Resend error:', JSON.stringify(emailError))
