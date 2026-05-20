@@ -2,9 +2,16 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { Resend } from 'resend'
 
+// Cliente anon para INSERT/SELECT (respeta RLS)
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+)
+
+// Cliente admin para UPDATE (bypasea RLS — solo usar en server-side)
+const supabaseAdmin = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.SUPABASE_SERVICE_ROLE_KEY!
 )
 
 const resend = new Resend(process.env.RESEND_API_KEY)
@@ -153,7 +160,7 @@ export async function POST(request: NextRequest) {
     const userNumber = (count ?? 1) + 62
 
     // Store the number permanently on the user's row
-    await supabase
+    await supabaseAdmin
       .from('waitlist')
       .update({ user_number: userNumber })
       .eq('id', inserted.id)
@@ -168,7 +175,7 @@ export async function POST(request: NextRequest) {
 
       if (referrer) {
         const newCount = referrer.referral_count + 1
-        await supabase
+        await supabaseAdmin
           .from('waitlist')
           .update({
             referral_count: newCount,
