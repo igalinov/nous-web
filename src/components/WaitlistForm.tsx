@@ -62,7 +62,7 @@ export default function WaitlistForm({ dark }: { dark?: boolean }) {
   }
 
   const copyLink = async () => {
-    const url = `${window.location.origin}?ref=${referralCode}`
+    const url = `${window.location.origin}/acceso-anticipado?ref=${referralCode}`
     try {
       await navigator.clipboard.writeText(url)
       setCopied(true)
@@ -71,7 +71,7 @@ export default function WaitlistForm({ dark }: { dark?: boolean }) {
   }
 
   if (state === 'success') {
-    const displayUrl = `noüs.es?ref=${referralCode}`
+    const displayUrl = `noüs.es/acceso-anticipado?ref=${referralCode}`
 
     return (
       <div style={{ maxWidth: '480px', margin: '0 auto', textAlign: 'center' }}>
