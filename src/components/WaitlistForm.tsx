@@ -1,11 +1,35 @@
 'use client'
 
-import { useState, FormEvent } from 'react'
+import { useState, useEffect, FormEvent } from 'react'
+
+function referralMessage(count: number): string {
+  if (count >= 3) return 'acceso anticipado garantizado.'
+  if (count === 2) return 'te falta 1 persona para garantizar tu acceso anticipado.'
+  if (count === 1) return 'te faltan 2 personas para garantizar tu acceso anticipado.'
+  return 'invita a 3 personas para garantizar tu acceso anticipado.'
+}
 
 export default function WaitlistForm({ dark }: { dark?: boolean }) {
   const [email, setEmail] = useState('')
   const [state, setState] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
-  const [message, setMessage] = useState('')
+  const [errorMsg, setErrorMsg] = useState('')
+  const [referredBy, setReferredBy] = useState('')
+  const [referralCode, setReferralCode] = useState('')
+  const [userNumber, setUserNumber] = useState(0)
+  const [copied, setCopied] = useState(false)
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    const ref = params.get('ref')
+    if (ref) {
+      setReferredBy(ref)
+    } else {
+      try {
+        const stored = sessionStorage.getItem('nous_ref')
+        if (stored) setReferredBy(stored)
+      } catch {}
+    }
+  }, [])
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
@@ -17,46 +41,162 @@ export default function WaitlistForm({ dark }: { dark?: boolean }) {
       const res = await fetch('/api/waitlist', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, referredBy: referredBy || undefined }),
       })
 
       const data = await res.json()
 
       if (res.ok) {
+        setReferralCode(data.referralCode || '')
+        setUserNumber(data.userNumber || 0)
         setState('success')
-        setMessage(data.message || 'Bienvenido.')
+        try { sessionStorage.removeItem('nous_ref') } catch {}
       } else {
         setState('error')
-        setMessage(data.error || 'Algo fue mal. Inténtalo de nuevo.')
+        setErrorMsg(data.error || 'Algo fue mal. Inténtalo de nuevo.')
       }
     } catch {
       setState('error')
-      setMessage('Error de conexión. Inténtalo de nuevo.')
+      setErrorMsg('Error de conexión. Inténtalo de nuevo.')
     }
   }
 
+  const copyLink = async () => {
+    const url = `${window.location.origin}?ref=${referralCode}`
+    try {
+      await navigator.clipboard.writeText(url)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch {}
+  }
+
   if (state === 'success') {
+    const displayUrl = `noüs.es?ref=${referralCode}`
+
     return (
       <div style={{ maxWidth: '480px', margin: '0 auto', textAlign: 'center' }}>
+
         <p style={{
           fontFamily: 'var(--font-mono)',
           fontSize: '10px',
           color: 'var(--ginger)',
           letterSpacing: '0.14em',
-          marginBottom: '16px',
+          marginBottom: '20px',
         }}>
           ya estás dentro.
         </p>
-        <p style={{
-          fontFamily: 'var(--font-serif)',
-          fontSize: '22px',
-          color: dark ? '#ffffff' : 'var(--obsidian)',
-          letterSpacing: '-0.3px',
-          lineHeight: '1.3',
-          marginBottom: '16px',
-        }}>
-          te avisamos cuando noüs esté listo.
-        </p>
+
+        {userNumber > 0 && (
+          <>
+            <p style={{
+              fontFamily: 'var(--font-serif)',
+              fontSize: '72px',
+              color: 'var(--ginger)',
+              letterSpacing: '-4px',
+              lineHeight: '1.0',
+              margin: '0 0 10px',
+            }}>
+              {userNumber}
+            </p>
+            <p style={{
+              fontFamily: 'var(--font-serif)',
+              fontSize: '15px',
+              color: dark ? 'rgba(255,255,255,0.70)' : 'var(--obsidian)',
+              letterSpacing: '-0.2px',
+              margin: '0 0 6px',
+            }}>
+              tu posición en la lista.
+            </p>
+            <p style={{
+              fontFamily: 'var(--font-serif)',
+              fontSize: '13px',
+              color: dark ? 'rgba(255,255,255,0.30)' : 'var(--ink-3)',
+              letterSpacing: '-0.1px',
+              margin: '0 0 32px',
+            }}>
+              por cada persona que invites, subes 5 posiciones.
+            </p>
+          </>
+        )}
+
+        <div style={{
+          height: '1px',
+          background: dark ? 'rgba(255,255,255,0.06)' : 'var(--border)',
+          marginBottom: '28px',
+        }} />
+
+        {referralCode && (
+          <>
+            <p style={{
+              fontFamily: 'var(--font-mono)',
+              fontSize: '10px',
+              color: 'var(--ginger)',
+              letterSpacing: '0.12em',
+              marginBottom: '14px',
+            }}>
+              comparte tu link.
+            </p>
+
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '10px',
+              marginBottom: '16px',
+              flexWrap: 'wrap',
+            }}>
+              <p style={{
+                fontFamily: 'var(--font-mono)',
+                fontSize: '12px',
+                color: dark ? 'rgba(255,255,255,0.70)' : 'var(--obsidian)',
+                letterSpacing: '0.02em',
+                background: dark ? 'rgba(255,255,255,0.05)' : 'rgba(10,10,10,0.04)',
+                border: `1px solid ${dark ? 'rgba(255,255,255,0.10)' : 'var(--border)'}`,
+                borderRadius: '8px',
+                padding: '10px 14px',
+                margin: 0,
+              }}>
+                {displayUrl}
+              </p>
+              <button
+                onClick={copyLink}
+                style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '11px',
+                  color: copied ? 'rgba(255,255,255,0.40)' : 'var(--ginger)',
+                  background: 'transparent',
+                  border: `1px solid ${copied ? 'rgba(255,255,255,0.10)' : 'var(--ginger)'}`,
+                  borderRadius: '8px',
+                  padding: '10px 16px',
+                  cursor: 'pointer',
+                  letterSpacing: '0.06em',
+                  transition: 'all 0.15s',
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                {copied ? 'copiado.' : 'copiar'}
+              </button>
+            </div>
+
+            <p style={{
+              fontFamily: 'var(--font-serif)',
+              fontSize: '14px',
+              color: dark ? 'rgba(255,255,255,0.40)' : 'var(--ink-3)',
+              letterSpacing: '-0.1px',
+              lineHeight: '1.6',
+              marginBottom: '32px',
+            }}>
+              {referralMessage(0)}
+            </p>
+
+            <div style={{
+              height: '1px',
+              background: dark ? 'rgba(255,255,255,0.06)' : 'var(--border)',
+              marginBottom: '24px',
+            }} />
+          </>
+        )}
+
         <p style={{
           fontFamily: 'var(--font-mono)',
           fontSize: '11px',
@@ -67,6 +207,7 @@ export default function WaitlistForm({ dark }: { dark?: boolean }) {
           si no ves nuestro email, revisa la carpeta de spam.<br />
           somos una startup y a veces llegamos por ahí primero.
         </p>
+
       </div>
     )
   }
@@ -135,7 +276,7 @@ export default function WaitlistForm({ dark }: { dark?: boolean }) {
           color: dark ? '#E07070' : '#A32D2D',
           fontFamily: 'var(--font-mono)',
         }}>
-          {message}
+          {errorMsg}
         </p>
       )}
 

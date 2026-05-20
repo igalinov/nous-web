@@ -1,4 +1,5 @@
 import Nav from '@/components/Nav'
+import CTALink from '@/components/CTALink'
 
 export default function Home() {
   return (
@@ -66,15 +67,7 @@ export default function Home() {
             siete minutos al día. cada día.
           </p>
 
-          <a href="/acceso-anticipado" style={{
-            fontFamily: 'var(--font-mono)',
-            fontSize: '12px',
-            color: 'var(--ginger)',
-            letterSpacing: '0.08em',
-            textDecoration: 'none',
-          }}>
-            quiero acceso anticipado →
-          </a>
+          <CTALink />
 
         </div>
       </section>
