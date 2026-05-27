@@ -2,12 +2,6 @@
 
 import { useState, useEffect, FormEvent } from 'react'
 
-function referralMessage(count: number): string {
-  if (count >= 3) return 'acceso anticipado garantizado.'
-  if (count === 2) return 'te falta 1 persona para garantizar tu acceso anticipado.'
-  if (count === 1) return 'te faltan 2 personas para garantizar tu acceso anticipado.'
-  return 'invita a 3 personas para garantizar tu acceso anticipado.'
-}
 
 export default function WaitlistForm({ dark }: { dark?: boolean }) {
   const [email, setEmail] = useState('')
@@ -183,10 +177,12 @@ export default function WaitlistForm({ dark }: { dark?: boolean }) {
               fontSize: '14px',
               color: dark ? 'rgba(255,255,255,0.40)' : 'var(--ink-3)',
               letterSpacing: '-0.1px',
-              lineHeight: '1.6',
+              lineHeight: '1.7',
               marginBottom: '32px',
             }}>
-              {referralMessage(0)}
+              los primeros en entrar prueban la app antes que nadie<br />
+              y llevan su número de usuario para siempre en su perfil.<br />
+              invita a 3 personas para garantizarlo.
             </p>
 
             <div style={{

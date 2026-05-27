@@ -122,6 +122,137 @@ const welcomeEmail = (email: string, userNumber: number, referralCode: string) =
   `,
 })
 
+const referralNotificationEmail = (to: string, newCount: number) => {
+  const remaining = 3 - newCount
+  const remainingText = newCount >= 3
+    ? 'acceso anticipado garantizado. ya no necesitas más referidos.'
+    : remaining === 1
+      ? 'te falta 1 persona para garantizar tu acceso anticipado.'
+      : `te faltan ${remaining} personas para garantizar tu acceso anticipado.`
+
+  return {
+    from: process.env.RESEND_FROM_EMAIL!,
+    to,
+    subject: 'alguien acaba de unirse con tu link.',
+    html: `
+      <!DOCTYPE html>
+      <html lang="es">
+      <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+      </head>
+      <body style="margin: 0; padding: 0; background-color: #111111;">
+        <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #111111; padding: 40px 20px;">
+          <tr>
+            <td align="center">
+              <table width="100%" cellpadding="0" cellspacing="0" style="max-width: 520px; background: #0a0a0a; border: 1px solid rgba(255,255,255,0.06);">
+                <tr>
+                  <td style="padding: 48px 40px 0;">
+                    <p style="font-family: monospace; font-size: 11px; color: #BE5504; letter-spacing: 0.12em; margin: 0 0 28px;">noüs · referidos</p>
+                    <p style="font-family: Georgia, serif; font-size: 36px; color: #ffffff; letter-spacing: -1.5px; line-height: 1.1; margin: 0 0 40px;">alguien acaba de unirse<br>con tu link.</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding: 0 40px;">
+                    <div style="height: 1px; background-color: rgba(255,255,255,0.06);"></div>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding: 40px 40px 0;">
+                    <p style="font-family: Palatino, 'Palatino Linotype', serif; font-size: 80px; color: #BE5504; letter-spacing: -4px; line-height: 1.0; margin: 0 0 14px;">${newCount}</p>
+                    <p style="font-family: Georgia, serif; font-size: 15px; color: rgba(255,255,255,0.70); letter-spacing: -0.2px; margin: 0 0 6px;">${newCount === 1 ? 'persona ha usado tu link.' : 'personas han usado tu link.'}</p>
+                    <p style="font-family: Georgia, serif; font-size: 14px; color: rgba(255,255,255,0.32); letter-spacing: -0.1px; margin: 0 0 40px;">${remainingText}</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding: 0 40px;">
+                    <div style="height: 1px; background-color: rgba(255,255,255,0.06);"></div>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding: 20px 40px;">
+                    <table width="100%" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td><p style="font-family: Georgia, serif; font-size: 15px; color: #BE5504; margin: 0;">piensa por ti mismo.</p></td>
+                        <td align="right"><a href="https://xn--nos-ioa.es" style="font-family: monospace; font-size: 11px; color: rgba(255,255,255,0.35); text-decoration: none; letter-spacing: 0.08em;">noüs.es</a></td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </body>
+      </html>
+    `,
+  }
+}
+
+const earlyAccessEmail = (to: string) => ({
+  from: process.env.RESEND_FROM_EMAIL!,
+  to,
+  subject: 'acceso anticipado garantizado.',
+  html: `
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body style="margin: 0; padding: 0; background-color: #111111;">
+      <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #111111; padding: 40px 20px;">
+        <tr>
+          <td align="center">
+            <table width="100%" cellpadding="0" cellspacing="0" style="max-width: 520px; background: #0a0a0a; border: 1px solid rgba(255,255,255,0.06);">
+              <tr>
+                <td style="padding: 48px 40px 0;">
+                  <p style="font-family: monospace; font-size: 11px; color: #BE5504; letter-spacing: 0.12em; margin: 0 0 28px;">noüs · acceso anticipado</p>
+                  <p style="font-family: Georgia, serif; font-size: 44px; color: #ffffff; letter-spacing: -2px; line-height: 1.0; margin: 0;">lo has</p>
+                  <p style="font-family: Georgia, serif; font-size: 44px; color: rgba(255,255,255,0.28); letter-spacing: -2px; line-height: 1.0; margin: 0 0 48px;">conseguido.</p>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding: 0 40px;">
+                  <div style="height: 1px; background-color: rgba(255,255,255,0.06);"></div>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding: 40px 40px 32px;">
+                  <p style="font-family: Georgia, serif; font-size: 17px; color: rgba(255,255,255,0.80); line-height: 1.7; margin: 0 0 32px;">tres personas han confiado en tu criterio.<br>eso dice algo de ti.</p>
+                  <div style="height: 1px; background-color: rgba(255,255,255,0.06); margin-bottom: 28px;"></div>
+                  <p style="font-family: monospace; font-size: 10px; color: #BE5504; letter-spacing: 0.12em; margin: 0 0 20px;">lo que eso significa.</p>
+                  <p style="font-family: Georgia, serif; font-size: 15px; color: rgba(255,255,255,0.55); line-height: 1.9; margin: 0;">
+                    — pruebas noüs antes que nadie. antes del lanzamiento público.<br>
+                    — tu número de usuario es tuyo para siempre en tu perfil.<br>
+                    — tu opinión moldea cómo se construye la app.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding: 0 40px;">
+                  <div style="height: 1px; background-color: rgba(255,255,255,0.06);"></div>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding: 20px 40px;">
+                  <table width="100%" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td><p style="font-family: Georgia, serif; font-size: 15px; color: #BE5504; margin: 0;">piensa por ti mismo.</p></td>
+                      <td align="right"><a href="https://xn--nos-ioa.es" style="font-family: monospace; font-size: 11px; color: rgba(255,255,255,0.35); text-decoration: none; letter-spacing: 0.08em;">noüs.es</a></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </body>
+    </html>
+  `,
+})
+
 export async function POST(request: NextRequest) {
   try {
     const { email, referredBy } = await request.json()
@@ -167,9 +298,24 @@ export async function POST(request: NextRequest) {
       throw dbError
     }
 
-    // Incrementar referral_count del referidor via función SECURITY DEFINER
+    // Incrementar referral_count del referidor y notificarle
     if (referredBy) {
+      const { data: referrer } = await supabase
+        .from('waitlist')
+        .select('email, referral_count')
+        .eq('referral_code', referredBy)
+        .maybeSingle()
+
       await supabase.rpc('increment_referral', { referrer_code: referredBy })
+
+      if (referrer) {
+        const newCount = referrer.referral_count + 1
+        if (newCount === 3) {
+          await resend.emails.send(earlyAccessEmail(referrer.email))
+        } else {
+          await resend.emails.send(referralNotificationEmail(referrer.email, newCount))
+        }
+      }
     }
 
     // Send welcome email via Resend
