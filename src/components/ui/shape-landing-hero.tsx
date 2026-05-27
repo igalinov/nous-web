@@ -6,14 +6,14 @@ import CTALink from '@/components/CTALink'
 export default function HeroGeometric() {
   const ease = [0.25, 0.4, 0.25, 1] as [number, number, number, number]
   const fadeUp = (delay: number) => ({
-    hidden: { opacity: 0, y: 22 },
+    hidden: { opacity: 0, y: 16 },
     visible: { opacity: 1, y: 0, transition: { duration: 1.0, delay, ease } },
   })
 
   return (
     <div className="relative w-full h-full flex-1 flex flex-col items-center justify-center overflow-hidden">
 
-      {/* Radial dark center — text readability against the canvas */}
+      {/* Radial dark center */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -22,36 +22,19 @@ export default function HeroGeometric() {
       />
 
       {/* Content */}
-      <div className="relative z-10 text-center px-6" style={{ maxWidth: '560px', width: '100%' }}>
-
-        <motion.div
-          variants={fadeUp(0.4)}
-          initial="hidden"
-          animate="visible"
-          className="inline-flex items-center gap-[10px] mb-12"
-        >
-          <div className="w-[5px] h-[5px] rounded-full bg-[#BE5504]" />
-          <span style={{
-            fontFamily: 'var(--font-mono)',
-            fontSize: '10px',
-            color: '#BE5504',
-            letterSpacing: '0.14em',
-          }}>
-            acceso anticipado
-          </span>
-        </motion.div>
+      <div className="relative z-10 text-center px-6" style={{ maxWidth: '480px', width: '100%' }}>
 
         <motion.h1
-          variants={fadeUp(0.56)}
+          variants={fadeUp(0.4)}
           initial="hidden"
           animate="visible"
           style={{
             fontFamily: 'var(--font-serif)',
-            letterSpacing: '-0.04em',
-            lineHeight: '0.96',
-            margin: '0 0 28px',
+            fontSize: 'clamp(28px, 4vw, 52px)',
+            letterSpacing: '-0.03em',
+            lineHeight: '1.08',
+            margin: '0 0 24px',
           }}
-          className="text-[clamp(50px,9.5vw,104px)]"
         >
           <span className="block text-white">delegar es fácil.</span>
           <span className="block" style={{ color: 'rgba(255,255,255,0.26)' }}>
@@ -60,22 +43,22 @@ export default function HeroGeometric() {
         </motion.h1>
 
         <motion.p
-          variants={fadeUp(0.72)}
+          variants={fadeUp(0.56)}
           initial="hidden"
           animate="visible"
           style={{
             fontFamily: 'var(--font-serif)',
-            fontSize: 'clamp(16px, 2vw, 20px)',
-            color: 'rgba(255,255,255,0.40)',
-            lineHeight: '1.4',
-            letterSpacing: '-0.15px',
-            marginBottom: '44px',
+            fontSize: 'clamp(14px, 1.5vw, 17px)',
+            color: 'rgba(255,255,255,0.35)',
+            lineHeight: '1.5',
+            letterSpacing: '-0.1px',
+            marginBottom: '36px',
           }}
         >
           una app para que tu criterio siga siendo tuyo.
         </motion.p>
 
-        <motion.div variants={fadeUp(0.88)} initial="hidden" animate="visible">
+        <motion.div variants={fadeUp(0.7)} initial="hidden" animate="visible">
           <CTALink />
         </motion.div>
 

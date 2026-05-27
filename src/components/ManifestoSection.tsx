@@ -21,15 +21,7 @@ const blocks: Line[][] = [
     { text: 'tan despacio que casi no se nota.', kind: 'muted' },
   ],
 
-  // 2 — el momento reconocible
-  [
-    { text: 'lo notaste aquella vez que tardaste un segundo de más en recordar cuál era tu opinión.', kind: 'muted' },
-    { text: 'en una sala con personas mirándote.', kind: 'muted' },
-    { text: '"esto no suena a ti."', kind: 'accent', gap: true },
-    { text: 'y tenía razón.', kind: 'muted' },
-  ],
-
-  // 3 — la trampa
+  // 2 — la trampa
   [
     { text: 'te dijeron que era eficiencia. productividad. inteligente.', kind: 'muted' },
     { text: 'y lo era.', kind: 'muted' },
