@@ -145,7 +145,7 @@ export default function HeroGeometric() {
   })
 
   return (
-    <div className="relative flex-1 w-full flex flex-col items-center justify-center overflow-hidden bg-[#0a0a0a]">
+    <div className="relative w-full h-full flex-1 flex flex-col items-center justify-center overflow-hidden bg-[#0a0a0a]">
 
       {/* Neural canvas */}
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />

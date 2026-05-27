@@ -20,7 +20,7 @@ export default function Nav({ active, dark }: { active?: 'manifiesto' | 'acceso-
         />
       </a>
       <div className="nav-links">
-        <a href="/manifiesto" style={{
+        <a href="/#manifiesto" style={{
           fontFamily: 'var(--font-mono)',
           fontSize: '12px',
           color: dark
@@ -31,7 +31,7 @@ export default function Nav({ active, dark }: { active?: 'manifiesto' | 'acceso-
         }}>
           manifiesto
         </a>
-        <a href="/acceso-anticipado" style={{
+        <a href="/#acceso-anticipado" style={{
           fontFamily: 'var(--font-mono)',
           fontSize: '12px',
           color: dark
