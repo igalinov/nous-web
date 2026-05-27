@@ -3,20 +3,16 @@
 import { useEffect, useState } from 'react'
 
 export default function CTALink() {
-  const [href, setHref] = useState('/acceso-anticipado')
+  const [href, setHref] = useState('#acceso-anticipado')
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
     const ref = params.get('ref')
     if (ref) {
       try { sessionStorage.setItem('nous_ref', ref) } catch {}
-      setHref(`/acceso-anticipado?ref=${ref}`)
-    } else {
-      try {
-        const stored = sessionStorage.getItem('nous_ref')
-        if (stored) setHref(`/acceso-anticipado?ref=${stored}`)
-      } catch {}
     }
+    // Always scroll to the section — ref is preserved via URL or sessionStorage
+    setHref('#acceso-anticipado')
   }, [])
 
   return (
