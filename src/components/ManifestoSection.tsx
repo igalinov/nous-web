@@ -98,26 +98,6 @@ export default function ManifestoSection() {
   return (
     <section style={{ position: 'relative' }}>
 
-      {/* Header */}
-      <div style={{ maxWidth: '640px', margin: '0 auto', padding: '100px 40px 0' }}>
-        <motion.div
-          initial={{ opacity: 0, scaleX: 0 }}
-          whileInView={{ opacity: 1, scaleX: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.9, ease }}
-          style={{ height: '1px', background: 'rgba(255,255,255,0.08)', transformOrigin: 'left', marginBottom: '36px' }}
-        />
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2, ease }}
-          style={{ fontFamily: 'var(--font-mono)', fontSize: '10px', color: '#BE5504', letterSpacing: '0.16em' }}
-        >
-          manifiesto
-        </motion.p>
-      </div>
-
       {/* Blocks — each occupies a full viewport */}
       {blocks.map((block, bi) => (
         <div
