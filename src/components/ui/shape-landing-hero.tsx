@@ -17,13 +17,13 @@ export default function HeroGeometric() {
   const ease = [0.25, 0.4, 0.25, 1] as [number, number, number, number]
 
   useEffect(() => {
-    const t = setInterval(() => setIdx(i => (i + 1) % rotating.length), 3200)
+    const t = setInterval(() => setIdx(i => (i + 1) % rotating.length), 5000)
     return () => clearInterval(t)
   }, [])
 
   const fadeUp = (delay: number) => ({
-    hidden: { opacity: 0, y: 16 },
-    visible: { opacity: 1, y: 0, transition: { duration: 1.1, delay, ease } },
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 1.2, delay, ease } },
   })
 
   return (
@@ -37,70 +37,67 @@ export default function HeroGeometric() {
         }}
       />
 
-      <div className="relative z-10 text-center px-6" style={{ maxWidth: '520px', width: '100%' }}>
+      <div className="relative z-10 text-center px-6" style={{ maxWidth: '600px', width: '100%' }}>
 
-        <motion.h1
+        <motion.div
           variants={fadeUp(0.4)}
           initial="hidden"
           animate="visible"
-          style={{
-            fontFamily: 'var(--font-serif)',
-            letterSpacing: '-0.03em',
-            lineHeight: '1.1',
-            margin: '0 0 24px',
-          }}
         >
           {/* Static first line */}
-          <span style={{
-            display: 'block',
-            color: '#ffffff',
-            fontSize: 'clamp(24px, 3.5vw, 46px)',
-            marginBottom: '4px',
+          <p style={{
+            fontFamily: 'var(--font-serif)',
+            fontSize: 'clamp(26px, 3.8vw, 50px)',
+            letterSpacing: '-0.03em',
+            lineHeight: '1.1',
+            color: 'rgba(255,255,255,0.55)',
+            margin: '0 0 10px',
           }}>
             delegar tu pensamiento es fácil.
-          </span>
+          </p>
+        </motion.div>
 
-          {/* Rotating second line */}
-          <span style={{
-            display: 'block',
-            color: 'rgba(255,255,255,0.28)',
-            fontSize: 'clamp(22px, 3.2vw, 42px)',
-            minHeight: '1.2em',
-          }}>
-            <AnimatePresence mode="wait">
-              <motion.span
-                key={rotating[idx]}
-                initial={{ opacity: 0, filter: 'blur(10px)' }}
-                animate={{ opacity: 1, filter: 'blur(0px)' }}
-                exit={{ opacity: 0, filter: 'blur(10px)' }}
-                transition={{ duration: 0.55, ease }}
-                style={{ display: 'block' }}
-              >
-                {rotating[idx]}
-              </motion.span>
-            </AnimatePresence>
-          </span>
-        </motion.h1>
+        {/* Rotating second line — ginger, bigger, 5s cycle */}
+        <div style={{ minHeight: 'clamp(36px, 5.5vw, 72px)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '36px' }}>
+          <AnimatePresence mode="wait">
+            <motion.p
+              key={rotating[idx]}
+              initial={{ opacity: 0, filter: 'blur(14px)', y: 12 }}
+              animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
+              exit={{ opacity: 0, filter: 'blur(14px)', y: -12 }}
+              transition={{ duration: 0.7, ease }}
+              style={{
+                fontFamily: 'var(--font-serif)',
+                fontSize: 'clamp(28px, 4.5vw, 60px)',
+                letterSpacing: '-0.035em',
+                lineHeight: '1.05',
+                color: '#BE5504',
+                margin: 0,
+              }}
+            >
+              {rotating[idx]}
+            </motion.p>
+          </AnimatePresence>
+        </div>
 
-        {/* Supporting line */}
-        <motion.p
-          variants={fadeUp(0.58)}
+        {/* Supporting line + CTA */}
+        <motion.div
+          variants={fadeUp(0.65)}
           initial="hidden"
           animate="visible"
-          style={{
+          style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '28px' }}
+        >
+          <p style={{
             fontFamily: 'var(--font-serif)',
             fontSize: 'clamp(13px, 1.4vw, 16px)',
-            color: 'rgba(255,255,255,0.28)',
+            color: 'rgba(255,255,255,0.26)',
             lineHeight: '1.5',
             letterSpacing: '-0.1px',
-            marginBottom: '36px',
-          }}
-        >
-          una app para que tu criterio siga siendo tuyo.
-        </motion.p>
+            margin: 0,
+          }}>
+            una app para que tu criterio siga siendo tuyo.
+          </p>
 
-        {/* CTA */}
-        <motion.div variants={fadeUp(0.72)} initial="hidden" animate="visible">
           <CTALink />
         </motion.div>
 
