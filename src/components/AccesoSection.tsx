@@ -9,7 +9,7 @@ export default function AccesoSection() {
   return (
     <section
       style={{
-        background: '#0a0a0a',
+        background: 'transparent',
         minHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',

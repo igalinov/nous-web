@@ -94,7 +94,7 @@ export default function ManifestoSection() {
   return (
     <section
       style={{
-        background: '#0a0a0a',
+        background: 'transparent',
         paddingBottom: '120px',
       }}
     >
