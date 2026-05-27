@@ -63,3 +63,5 @@ body {
   .hero-h1      { letter-spacing: -1px; }
   .acceso-h1    { letter-spacing: -1px; }
 }
+
+@tailwind utilities;
