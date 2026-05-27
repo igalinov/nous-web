@@ -138,6 +138,7 @@ body {
 .nav-wrap       { padding: 4px 40px; }
 .nav-logo       { height: 48px; display: block; }
 .nav-links      { display: flex; align-items: center; gap: 32px; }
+.nav-text-link  { display: inline; }
 .page-pad       { padding: 40px; }
 .section-pad    { padding: 80px 40px; }
 .acceso-pad     { padding: 32px 40px; }
@@ -146,15 +147,16 @@ body {
 .acceso-h1      { letter-spacing: -2px; }
 
 @media (max-width: 640px) {
-  .nav-wrap     { padding: 4px 20px; }
-  .nav-logo     { height: 32px; }
-  .nav-links    { gap: 20px; }
-  .page-pad     { padding: 32px 20px; }
-  .section-pad  { padding: 48px 20px; }
-  .acceso-pad   { padding: 32px 20px; }
-  .footer-pad   { padding: 16px 20px; }
-  .hero-h1      { letter-spacing: -1px; }
-  .acceso-h1    { letter-spacing: -1px; }
+  .nav-wrap       { padding: 4px 20px; }
+  .nav-logo       { height: 32px; }
+  .nav-links      { gap: 20px; }
+  .nav-text-link  { display: none; }
+  .page-pad       { padding: 32px 20px; }
+  .section-pad    { padding: 48px 20px; }
+  .acceso-pad     { padding: 32px 20px; }
+  .footer-pad     { padding: 16px 20px; }
+  .hero-h1        { letter-spacing: -1px; }
+  .acceso-h1      { letter-spacing: -1px; }
 }
 
 @tailwind utilities;
