@@ -1,6 +1,11 @@
+'use client'
+
 import ThemeToggle from '@/components/ThemeToggle'
+import { useTheme } from '@/context/ThemeContext'
 
 export default function Nav() {
+  const { theme } = useTheme()
+
   return (
     <nav className="nav-wrap" style={{
       display: 'flex',
@@ -16,10 +21,10 @@ export default function Nav() {
     }}>
       <a href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
         <img
-          src="/logo.svg"
+          src={theme === 'light' ? '/logo-light.svg' : '/logo.svg'}
           alt="noüs"
           className="nav-logo"
-          style={{ display: 'block' }}
+          style={{ display: 'block', transition: 'opacity 0.3s ease' }}
         />
       </a>
 
