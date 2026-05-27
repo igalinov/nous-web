@@ -61,7 +61,7 @@ const styles: Record<LineKind, React.CSSProperties> = {
   big: {
     fontFamily: 'var(--font-serif)',
     fontSize: 'clamp(38px, 6.5vw, 76px)',
-    color: 'rgba(255,255,255,0.92)',
+    color: 'var(--manifesto-big)',
     letterSpacing: '-0.04em',
     lineHeight: '1.02',
     marginBottom: '24px',
@@ -77,7 +77,7 @@ const styles: Record<LineKind, React.CSSProperties> = {
   muted: {
     fontFamily: 'var(--font-serif)',
     fontSize: 'clamp(15px, 1.8vw, 19px)',
-    color: 'rgba(255,255,255,0.30)',
+    color: 'var(--text-muted)',
     letterSpacing: '-0.1px',
     lineHeight: '1.6',
     marginBottom: '8px',
@@ -98,7 +98,7 @@ export default function ManifestoSection() {
   return (
     <section style={{ position: 'relative' }}>
 
-      {/* Blocks — each occupies a full viewport */}
+      {/* Bloques — cada uno ocupa un viewport completo */}
       {blocks.map((block, bi) => (
         <div
           key={bi}
@@ -133,14 +133,14 @@ export default function ManifestoSection() {
         </div>
       ))}
 
-      {/* Closing */}
+      {/* Cierre */}
       <div style={{ maxWidth: '640px', margin: '0 auto', padding: '0 40px 140px', textAlign: 'center' }}>
         <motion.div
           initial={{ opacity: 0, scaleX: 0 }}
           whileInView={{ opacity: 1, scaleX: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease }}
-          style={{ height: '1px', background: 'rgba(255,255,255,0.06)', transformOrigin: 'center', marginBottom: '60px' }}
+          style={{ height: '1px', background: 'var(--border-subtle)', transformOrigin: 'center', marginBottom: '60px' }}
         />
         <motion.p
           initial={{ opacity: 0, y: 20 }}

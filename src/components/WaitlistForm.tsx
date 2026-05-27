@@ -1,9 +1,11 @@
 'use client'
 
 import { useState, useEffect, FormEvent } from 'react'
+import { useTheme } from '@/context/ThemeContext'
 
 
-export default function WaitlistForm({ dark }: { dark?: boolean }) {
+export default function WaitlistForm() {
+  const { theme } = useTheme()
   const [email, setEmail] = useState('')
   const [state, setState] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [errorMsg, setErrorMsg] = useState('')
@@ -95,7 +97,7 @@ export default function WaitlistForm({ dark }: { dark?: boolean }) {
             <p style={{
               fontFamily: 'var(--font-serif)',
               fontSize: '15px',
-              color: dark ? 'rgba(255,255,255,0.70)' : 'var(--obsidian)',
+              color: 'var(--success-num)',
               letterSpacing: '-0.2px',
               margin: '0 0 6px',
             }}>
@@ -104,7 +106,7 @@ export default function WaitlistForm({ dark }: { dark?: boolean }) {
             <p style={{
               fontFamily: 'var(--font-serif)',
               fontSize: '13px',
-              color: dark ? 'rgba(255,255,255,0.30)' : 'var(--ink-3)',
+              color: 'var(--success-sub)',
               letterSpacing: '-0.1px',
               margin: '0 0 32px',
             }}>
@@ -115,7 +117,7 @@ export default function WaitlistForm({ dark }: { dark?: boolean }) {
 
         <div style={{
           height: '1px',
-          background: dark ? 'rgba(255,255,255,0.06)' : 'var(--border)',
+          background: 'var(--border-subtle)',
           marginBottom: '28px',
         }} />
 
@@ -142,10 +144,10 @@ export default function WaitlistForm({ dark }: { dark?: boolean }) {
               <p style={{
                 fontFamily: 'var(--font-mono)',
                 fontSize: '12px',
-                color: dark ? 'rgba(255,255,255,0.70)' : 'var(--obsidian)',
+                color: 'var(--referral-url)',
                 letterSpacing: '0.02em',
-                background: dark ? 'rgba(255,255,255,0.05)' : 'rgba(10,10,10,0.04)',
-                border: `1px solid ${dark ? 'rgba(255,255,255,0.10)' : 'var(--border)'}`,
+                background: 'var(--referral-box-bg)',
+                border: '1px solid var(--referral-box-border)',
                 borderRadius: '8px',
                 padding: '10px 14px',
                 margin: 0,
@@ -157,9 +159,9 @@ export default function WaitlistForm({ dark }: { dark?: boolean }) {
                 style={{
                   fontFamily: 'var(--font-mono)',
                   fontSize: '11px',
-                  color: copied ? 'rgba(255,255,255,0.40)' : 'var(--ginger)',
+                  color: copied ? 'var(--nav-link)' : 'var(--ginger)',
                   background: 'transparent',
-                  border: `1px solid ${copied ? 'rgba(255,255,255,0.10)' : 'var(--ginger)'}`,
+                  border: `1px solid ${copied ? 'var(--referral-box-border)' : 'var(--ginger)'}`,
                   borderRadius: '8px',
                   padding: '10px 16px',
                   cursor: 'pointer',
@@ -175,7 +177,7 @@ export default function WaitlistForm({ dark }: { dark?: boolean }) {
             <p style={{
               fontFamily: 'var(--font-serif)',
               fontSize: '14px',
-              color: dark ? 'rgba(255,255,255,0.40)' : 'var(--ink-3)',
+              color: 'var(--nav-link)',
               letterSpacing: '-0.1px',
               lineHeight: '1.7',
               marginBottom: '32px',
@@ -187,7 +189,7 @@ export default function WaitlistForm({ dark }: { dark?: boolean }) {
 
             <div style={{
               height: '1px',
-              background: dark ? 'rgba(255,255,255,0.06)' : 'var(--border)',
+              background: 'var(--border-subtle)',
               marginBottom: '24px',
             }} />
           </>
@@ -196,7 +198,7 @@ export default function WaitlistForm({ dark }: { dark?: boolean }) {
         <p style={{
           fontFamily: 'var(--font-mono)',
           fontSize: '11px',
-          color: dark ? 'rgba(255,255,255,0.22)' : 'var(--ink-3)',
+          color: 'var(--success-tiny)',
           lineHeight: '1.6',
           letterSpacing: '0.02em',
         }}>
@@ -227,18 +229,18 @@ export default function WaitlistForm({ dark }: { dark?: boolean }) {
           style={{
             flex: '1 1 240px',
             minWidth: '220px',
-            background: dark ? 'rgba(255,255,255,0.06)' : 'var(--white)',
-            border: `1px solid ${dark ? 'rgba(255,255,255,0.12)' : 'var(--border)'}`,
+            background: 'var(--form-input-bg)',
+            border: '1px solid var(--form-input-border)',
             borderRadius: '10px',
             padding: '14px 20px',
             fontSize: '15px',
-            color: dark ? '#ffffff' : 'var(--obsidian)',
+            color: 'var(--form-input-text)',
             fontFamily: 'var(--font-sans)',
             outline: 'none',
             transition: 'border-color 0.15s',
           }}
           onFocus={(e) => e.target.style.borderColor = 'var(--ginger)'}
-          onBlur={(e) => e.target.style.borderColor = dark ? 'rgba(255,255,255,0.12)' : 'var(--border)'}
+          onBlur={(e) => e.target.style.borderColor = 'var(--form-input-border)'}
         />
         <button
           type="submit"
@@ -246,7 +248,7 @@ export default function WaitlistForm({ dark }: { dark?: boolean }) {
           style={{
             background: state === 'loading'
               ? 'rgba(255,255,255,0.15)'
-              : dark ? 'var(--ginger)' : 'var(--obsidian)',
+              : theme === 'dark' ? 'var(--ginger)' : 'var(--obsidian)',
             color: '#ffffff',
             border: 'none',
             borderRadius: '10px',
@@ -269,7 +271,7 @@ export default function WaitlistForm({ dark }: { dark?: boolean }) {
           textAlign: 'center',
           marginTop: '12px',
           fontSize: '13px',
-          color: dark ? '#E07070' : '#A32D2D',
+          color: 'var(--form-error)',
           fontFamily: 'var(--font-mono)',
         }}>
           {errorMsg}
@@ -280,7 +282,7 @@ export default function WaitlistForm({ dark }: { dark?: boolean }) {
         textAlign: 'center',
         marginTop: '14px',
         fontSize: '12px',
-        color: dark ? 'rgba(255,255,255,0.25)' : 'var(--ink-3)',
+        color: 'var(--form-label)',
         fontFamily: 'var(--font-mono)',
         letterSpacing: '0.04em',
       }}>

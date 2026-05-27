@@ -29,11 +29,11 @@ export default function HeroGeometric() {
   return (
     <div className="relative w-full h-full flex-1 flex flex-col items-center justify-center overflow-hidden">
 
-      {/* Radial vignette */}
+      {/* Viñeta radial — adapta al tema vía variables CSS */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'radial-gradient(ellipse 65% 70% at 50% 50%, rgba(10,10,10,0.82) 0%, rgba(10,10,10,0.40) 55%, transparent 100%)',
+          background: 'radial-gradient(ellipse 65% 70% at 50% 50%, var(--vignette-a) 0%, var(--vignette-b) 55%, transparent 100%)',
         }}
       />
 
@@ -44,20 +44,20 @@ export default function HeroGeometric() {
           initial="hidden"
           animate="visible"
         >
-          {/* Static first line */}
+          {/* Línea estática */}
           <p style={{
             fontFamily: 'var(--font-serif)',
             fontSize: 'clamp(26px, 3.8vw, 50px)',
             letterSpacing: '-0.03em',
             lineHeight: '1.1',
-            color: 'rgba(255,255,255,0.55)',
+            color: 'var(--hero-static)',
             margin: '0 0 10px',
           }}>
             delegar tu pensamiento es fácil.
           </p>
         </motion.div>
 
-        {/* Rotating second line — ginger, bigger, 5s cycle */}
+        {/* Línea rotante — ginger, ciclo de 5s */}
         <div style={{ minHeight: 'clamp(36px, 5.5vw, 72px)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '36px' }}>
           <AnimatePresence mode="wait">
             <motion.p
@@ -80,7 +80,7 @@ export default function HeroGeometric() {
           </AnimatePresence>
         </div>
 
-        {/* Supporting line + CTA */}
+        {/* Subtítulo + CTA */}
         <motion.div
           variants={fadeUp(0.65)}
           initial="hidden"
@@ -90,7 +90,7 @@ export default function HeroGeometric() {
           <p style={{
             fontFamily: 'var(--font-serif)',
             fontSize: 'clamp(13px, 1.4vw, 16px)',
-            color: 'rgba(255,255,255,0.26)',
+            color: 'var(--hero-sub)',
             lineHeight: '1.5',
             letterSpacing: '-0.1px',
             margin: 0,

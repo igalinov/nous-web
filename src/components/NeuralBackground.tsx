@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import { useTheme } from '@/context/ThemeContext'
 
 interface Particle {
   x: number
@@ -15,6 +16,12 @@ interface Particle {
 
 export default function NeuralBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const { theme } = useTheme()
+  const themeRef = useRef(theme)
+
+  useEffect(() => {
+    themeRef.current = theme
+  }, [theme])
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -63,6 +70,9 @@ export default function NeuralBackground() {
       t += 0.007
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
+      // Leer el tema actual desde la ref para no reiniciar la animación
+      const isLight = themeRef.current === 'light'
+
       for (const p of particles) {
         p.x += p.vx
         p.y += p.vy
@@ -80,10 +90,12 @@ export default function NeuralBackground() {
           const strength = 1 - dist / MAX_DIST
           const hasGinger = particles[i].type === 'ginger' || particles[j].type === 'ginger'
           if (hasGinger) {
-            ctx.strokeStyle = `rgba(190, 85, 4, ${strength * 0.35})`
+            ctx.strokeStyle = `rgba(190, 85, 4, ${strength * (isLight ? 0.25 : 0.35)})`
             ctx.lineWidth = 0.8
           } else {
-            ctx.strokeStyle = `rgba(255, 255, 255, ${strength * 0.08})`
+            ctx.strokeStyle = isLight
+              ? `rgba(10, 10, 10, ${strength * 0.06})`
+              : `rgba(255, 255, 255, ${strength * 0.08})`
             ctx.lineWidth = 0.4
           }
           ctx.beginPath()
@@ -111,7 +123,9 @@ export default function NeuralBackground() {
         } else {
           ctx.beginPath()
           ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2)
-          ctx.fillStyle = `rgba(255, 255, 255, ${op})`
+          ctx.fillStyle = isLight
+            ? `rgba(10, 10, 10, ${op})`
+            : `rgba(255, 255, 255, ${op})`
           ctx.fill()
         }
       }

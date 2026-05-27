@@ -7,11 +7,11 @@ import NeuralBackground from '@/components/NeuralBackground'
 export default function Home() {
   return (
     <>
-      {/* Fixed canvas — covers full viewport on all scroll positions */}
+      {/* Canvas fijo — cubre el viewport completo en todas las posiciones de scroll */}
       <NeuralBackground />
 
       <main style={{ position: 'relative', zIndex: 1 }}>
-        <Nav dark />
+        <Nav />
 
         <div id="hero" style={{ minHeight: 'calc(100vh - 65px)', display: 'flex', flexDirection: 'column' }}>
           <HeroGeometric />

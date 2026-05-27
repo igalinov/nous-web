@@ -1,22 +1,112 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
 
+/* ─── Brand tokens (never change between themes) ─── */
 :root {
-  --obsidian: #0a0a0a;
-  --fog: #f5f4f0;
-  --fog-mid: #edecea;
-  --ginger: #BE5504;
+  --ginger:       #BE5504;
   --ginger-light: #FAEBD4;
-  --ginger-dark: #7A2E00;
-  --white: #ffffff;
-  --ink-2: #555555;
-  --ink-3: #999999;
-  --border: rgba(10, 10, 10, 0.09);
+  --ginger-dark:  #7A2E00;
+  --obsidian:     #0a0a0a;
+  --fog:          #f5f4f0;
+  --fog-mid:      #edecea;
+  --white:        #ffffff;
 
   --font-serif: 'DM Serif Display', Georgia, serif;
-  --font-sans: 'DM Sans', system-ui, sans-serif;
-  --font-mono: 'DM Mono', monospace;
+  --font-sans:  'DM Sans', system-ui, sans-serif;
+  --font-mono:  'DM Mono', monospace;
 }
 
+/* ─── Dark theme (default) ─── */
+:root, [data-theme="dark"] {
+  --bg:               #0a0a0a;
+  --nav-bg-color:     rgba(10,10,10,0.97);
+  --nav-border:       rgba(255,255,255,0.06);
+  --nav-link:         rgba(255,255,255,0.40);
+  --nav-link-active:  rgba(255,255,255,0.85);
+
+  --text-primary:     rgba(255,255,255,0.92);
+  --text-secondary:   rgba(255,255,255,0.55);
+  --text-muted:       rgba(255,255,255,0.30);
+  --text-faint:       rgba(255,255,255,0.26);
+
+  --border-subtle:    rgba(255,255,255,0.06);
+  --border-mid:       rgba(255,255,255,0.08);
+
+  --vignette-a:       rgba(10,10,10,0.82);
+  --vignette-b:       rgba(10,10,10,0.40);
+
+  --hero-static:      rgba(255,255,255,0.55);
+  --hero-sub:         rgba(255,255,255,0.26);
+
+  --manifesto-big:    rgba(255,255,255,0.92);
+
+  --acceso-h2:        #ffffff;
+  --acceso-desc:      rgba(255,255,255,0.38);
+
+  --form-input-bg:    rgba(255,255,255,0.06);
+  --form-input-border:rgba(255,255,255,0.12);
+  --form-input-text:  #ffffff;
+  --form-label:       rgba(255,255,255,0.25);
+  --form-error:       #E07070;
+
+  --success-num:      rgba(255,255,255,0.70);
+  --success-sub:      rgba(255,255,255,0.30);
+  --success-tiny:     rgba(255,255,255,0.22);
+  --referral-box-bg:  rgba(255,255,255,0.05);
+  --referral-box-border: rgba(255,255,255,0.10);
+  --referral-url:     rgba(255,255,255,0.70);
+
+  /* ink-2/3 aliases for legacy usage */
+  --ink-2: #555555;
+  --ink-3: #999999;
+  --border: rgba(10,10,10,0.09);
+}
+
+/* ─── Light theme ─── */
+[data-theme="light"] {
+  --bg:               #f5f4f0;
+  --nav-bg-color:     rgba(245,244,240,0.97);
+  --nav-border:       rgba(10,10,10,0.09);
+  --nav-link:         rgba(10,10,10,0.45);
+  --nav-link-active:  rgba(10,10,10,0.85);
+
+  --text-primary:     rgba(10,10,10,0.88);
+  --text-secondary:   rgba(10,10,10,0.58);
+  --text-muted:       rgba(10,10,10,0.38);
+  --text-faint:       rgba(10,10,10,0.30);
+
+  --border-subtle:    rgba(10,10,10,0.07);
+  --border-mid:       rgba(10,10,10,0.10);
+
+  --vignette-a:       rgba(245,244,240,0.88);
+  --vignette-b:       rgba(245,244,240,0.38);
+
+  --hero-static:      rgba(10,10,10,0.72);
+  --hero-sub:         rgba(10,10,10,0.35);
+
+  --manifesto-big:    rgba(10,10,10,0.88);
+
+  --acceso-h2:        #0a0a0a;
+  --acceso-desc:      rgba(10,10,10,0.42);
+
+  --form-input-bg:    rgba(10,10,10,0.04);
+  --form-input-border:rgba(10,10,10,0.12);
+  --form-input-text:  #0a0a0a;
+  --form-label:       rgba(10,10,10,0.40);
+  --form-error:       #A32D2D;
+
+  --success-num:      rgba(10,10,10,0.70);
+  --success-sub:      rgba(10,10,10,0.45);
+  --success-tiny:     rgba(10,10,10,0.30);
+  --referral-box-bg:  rgba(10,10,10,0.04);
+  --referral-box-border: rgba(10,10,10,0.10);
+  --referral-url:     rgba(10,10,10,0.70);
+
+  --ink-2: #555555;
+  --ink-3: #666666;
+  --border: rgba(10,10,10,0.09);
+}
+
+/* ─── Reset ─── */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -33,9 +123,10 @@ html {
 
 body {
   font-family: var(--font-sans);
-  background-color: var(--obsidian);
-  color: var(--obsidian);
+  background-color: var(--bg);
+  color: var(--text-primary);
   line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 ::selection {
@@ -43,7 +134,7 @@ body {
   color: var(--white);
 }
 
-/* Responsive utilities */
+/* ─── Responsive utilities ─── */
 .nav-wrap       { padding: 4px 40px; }
 .nav-logo       { height: 48px; display: block; }
 .nav-links      { display: flex; align-items: center; gap: 32px; }

@@ -19,7 +19,7 @@ export default function AccesoSection() {
         overflow: 'hidden',
       }}
     >
-      {/* Subtle ginger glow behind the form */}
+      {/* Glow sutil de fondo */}
       <div
         style={{
           position: 'absolute',
@@ -29,7 +29,7 @@ export default function AccesoSection() {
         }}
       />
 
-      {/* Top divider */}
+      {/* Divisor superior */}
       <motion.div
         initial={{ opacity: 0, scaleX: 0 }}
         whileInView={{ opacity: 1, scaleX: 1 }}
@@ -41,7 +41,7 @@ export default function AccesoSection() {
           left: '40px',
           right: '40px',
           height: '1px',
-          background: 'rgba(255,255,255,0.07)',
+          background: 'var(--border-subtle)',
           transformOrigin: 'left',
         }}
       />
@@ -75,7 +75,7 @@ export default function AccesoSection() {
           sé el primero en acceder.
         </motion.p>
 
-        {/* Headline */}
+        {/* Titular */}
         <motion.h2
           initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -84,7 +84,7 @@ export default function AccesoSection() {
           style={{
             fontFamily: 'var(--font-serif)',
             fontSize: 'clamp(44px, 8.5vw, 88px)',
-            color: '#ffffff',
+            color: 'var(--acceso-h2)',
             letterSpacing: '-0.04em',
             lineHeight: '0.96',
             marginBottom: '28px',
@@ -93,7 +93,7 @@ export default function AccesoSection() {
           está en camino.
         </motion.h2>
 
-        {/* Description */}
+        {/* Descripción */}
         <motion.p
           initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -102,7 +102,7 @@ export default function AccesoSection() {
           style={{
             fontFamily: 'var(--font-serif)',
             fontSize: 'clamp(16px, 2vw, 19px)',
-            color: 'rgba(255,255,255,0.38)',
+            color: 'var(--acceso-desc)',
             lineHeight: '1.5',
             letterSpacing: '-0.1px',
             maxWidth: '400px',
@@ -113,7 +113,7 @@ export default function AccesoSection() {
           la práctica diaria de la independencia cognitiva.
         </motion.p>
 
-        {/* Divider */}
+        {/* Divisor */}
         <motion.div
           initial={{ opacity: 0, scaleX: 0 }}
           whileInView={{ opacity: 1, scaleX: 1 }}
@@ -121,20 +121,20 @@ export default function AccesoSection() {
           transition={{ duration: 0.6, delay: 0.25, ease }}
           style={{
             height: '1px',
-            background: 'rgba(255,255,255,0.07)',
+            background: 'var(--border-subtle)',
             marginBottom: '48px',
             transformOrigin: 'center',
           }}
         />
 
-        {/* Form */}
+        {/* Formulario */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.35, ease }}
         >
-          <WaitlistForm dark />
+          <WaitlistForm />
         </motion.div>
       </div>
     </section>
