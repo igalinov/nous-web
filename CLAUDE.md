@@ -102,7 +102,7 @@ Incorrecto: "¡¡Increíble!! 🎉" / "¡No rompas tu racha! 🔥"
 
 ---
 
-## estado actual del proyecto — abril 2026
+## estado actual del proyecto — mayo 2026
 
 ### infraestructura ✅ completada
 - noüs.es live en Vercel — desplegado y funcionando
@@ -114,13 +114,18 @@ Incorrecto: "¡¡Increíble!! 🎉" / "¡No rompas tu racha! 🔥"
 - CLAUDE.md sincronizado en el proyecto local
 
 ### web ✅ completada y refinada
-- 3 páginas independientes: / · /manifiesto · /acceso-anticipado
+- Single-page scroll: hero → manifiesto → acceso anticipado (todo en /)
+- /manifiesto y /acceso-anticipado redirigen a anclas de la página principal
+- Referral links preservados en redirect: /acceso-anticipado?ref=XXX → /?ref=XXX#acceso-anticipado
 - API route /api/waitlist — captura email + welcome email automático
-- Stack: Next.js 14 + TypeScript + Supabase + Resend + Vercel
+- Stack: Next.js 14 + TypeScript + Tailwind v3 + Supabase + Resend + Vercel
+- Dark/light mode toggle con persistencia en localStorage ✅
+- Sistema completo de CSS variables para temas ✅
+- NeuralBackground canvas fijo como fondo global ✅
+- ManifestoSection "pantalla a pantalla" (cada bloque = 100vh) ✅
+- Hero con frases rotantes blur dissolve ✅
 - Fix aplicado: maybeSingle() para evitar 406 en Supabase
 - Fix aplicado: RESEND_FROM_EMAIL = hola@xn--nos-ioa.es
-- Estética: obsidian full en las 3 páginas — diseño dark aprobado
-- Logo SVG en nav implementado y funcionando — ver detalles en sección nav
 - Web totalmente responsive — breakpoint 640px
 
 ### marketing ✅ definido
@@ -143,13 +148,7 @@ Incorrecto: "¡¡Increíble!! 🎉" / "¡No rompas tu racha! 🔥"
 
 ## próximos pasos — en orden de prioridad
 
-### 1. marketing — esta semana
-- Publicar el primer post de LinkedIn (12 posts listos, elegir el mejor)
-- Tu novia: crear cuenta @think.nous y publicar los primeros 3 posts
-- Tu novia: diseñar foto de perfil y 4 portadas de destacados en Figma
-- Configurar nous.es como link en bio de Instagram
-
-### 2. proyecto Xcode — próxima sesión
+### 1. proyecto Xcode ← SIGUIENTE
 - Crear proyecto Xcode con estructura base SwiftUI
 - Configurar tokens de color como extensión de Color
 - Configurar tokens tipográficos como extensión de Font
@@ -158,15 +157,21 @@ Incorrecto: "¡¡Increíble!! 🎉" / "¡No rompas tu racha! 🔥"
 - Añadir PostHog iOS SDK como dependencia
 - Crear estructura de navegación base
 
+### 2. Apple Developer Program
+- Registrarse en Apple Developer Program (99$/año)
+- Configurar Sign in with Apple en Supabase
+- Crear App ID para noüs en App Store Connect
+
 ### 3. BBDD — fase 3 pendiente
 - Añadir tabla device_tokens cuando arranquen las push notifications
 - Estructura: id, user_id (FK→profiles), token (text), platform ('ios'),
   created_at, updated_at
 
-### 4. Apple Developer Program
-- Registrarse en Apple Developer Program (99$/año)
-- Configurar Sign in with Apple en Supabase
-- Crear App ID para noüs en App Store Connect
+### 4. marketing — en marcha
+- Publicar el primer post de LinkedIn (12 posts listos, elegir el mejor)
+- Tu novia: crear cuenta @think.nous y publicar los primeros 3 posts
+- Tu novia: diseñar foto de perfil y 4 portadas de destacados en Figma
+- Configurar nous.es como link en bio de Instagram
 
 ---
 
@@ -270,79 +275,139 @@ noüs score = (agudeza × 0.40) + (criterio × 0.40) + (consistencia × 0.20)
 ## dirección visual y copy — web
 
 ### arquitectura de páginas — decisión definitiva
-Cada página tiene exactamente un trabajo. No mezclar:
-- `/` — impacto de marca. hook. sin CTA.
-- `/manifiesto` — convicción. el texto completo. sin eyebrow, sin CTA.
-- `/acceso-anticipado` — captura. el formulario de waitlist.
+- `/` — single-page scroll: hero → manifiesto → acceso anticipado
+  El nav ancla a `#manifiesto` y `#acceso-anticipado` dentro de la misma página
+- `/manifiesto` — server redirect a `/#manifiesto`
+- `/acceso-anticipado?ref=XXX` — server redirect a `/?ref=XXX#acceso-anticipado`
+  (preserva el parámetro referral en el redirect)
 
-### estética web aprobada
-- Fondo: **obsidian (#0a0a0a)** en las 3 páginas — la web es enteramente dark
-- El fog no se usa en la web — es exclusivo de pantallas light de la app iOS
-- Sin footer con wordmark noüs — solo @think.nous y la frase de cierre
-- Footer: rgba(255,255,255,0.50) — nunca ginger en el footer
+### dark/light mode — sistema implementado
+La web soporta modo oscuro y claro con toggle manual en el nav.
+
+**Persistencia:**
+- `localStorage` key: `nous-theme` → valor: `'dark'` | `'light'`
+- Fallback si no hay preferencia guardada: `prefers-color-scheme` del sistema
+- Script anti-FOUC en `<head>` aplica `data-theme` antes de que React hidrate
+
+**ThemeContext** (`src/context/ThemeContext.tsx`):
+- `ThemeProvider` — lee el tema aplicado por el script anti-FOUC, persiste cambios
+- `useTheme()` hook — expone `{ theme, toggle }`
+
+**ThemeToggle** (`src/components/ThemeToggle.tsx`):
+- Icono Sol (dark → click → light) / Luna (light → click → dark)
+- `lucide-react` · 15px · strokeWidth 1.75
+- AnimatePresence rotate + scale · 0.25s
+
+**Sistema de CSS variables** (`:root, [data-theme="dark"]` y `[data-theme="light"]`):
+```
+--bg                   fondo de página
+--nav-bg-color         fondo del nav (con transparencia para blur)
+--nav-border           borde inferior del nav
+--nav-link             color de los links de nav
+--nav-link-active      color hover/activo de links
+--text-primary         texto principal
+--text-secondary       texto secundario
+--text-muted           texto apagado
+--text-faint           texto muy apagado
+--border-subtle        bordes y divisores finos
+--border-mid           bordes algo más visibles
+--vignette-a / -b      viñeta radial del hero (centro / periferia)
+--hero-static          línea estática del hero
+--hero-sub             subtítulo del hero
+--manifesto-big        texto grande del manifiesto
+--acceso-h2            titular de acceso anticipado
+--acceso-desc          descripción de acceso anticipado
+--form-input-bg/border/text/label/error    campos del formulario
+--success-num/sub/tiny números y textos del estado success
+--referral-box-bg/border/url              caja de referral link
+```
+
+**NeuralBackground** — tema-aware sin reiniciar la animación:
+- Patrón `themeRef` — la ref se actualiza en un `useEffect` separado
+- Dark: nodos blancos `rgba(255,255,255,op)`, conexiones `rgba(255,255,255,0.08)`
+- Light: nodos obsidian `rgba(10,10,10,op)`, conexiones `rgba(10,10,10,0.06)`
+- Nodos ginger y sus conexiones: iguales en ambos temas
+
+### logo — dos variantes SVG
+- `public/logo.svg` — letras blancas (`#FEFEFE`) + puntos ginger · para fondo dark
+- `public/logo-light.svg` — letras obsidian (`#0a0a0a`) + puntos ginger · para fondo light
+- El counter de la 'o' es negro en logo.svg y fog (#f5f4f0) en logo-light.svg
+- Nav.tsx es Client Component y selecciona el src correcto con `useTheme()`
 
 ### nav web — valores aprobados
-- Logo: SVG vectorial (`public/logo.svg`) — no texto DM Serif
-  - Desktop: 100px de alto
-  - Móvil (< 640px): 56px de alto
-  - Dark mode: `filter: invert(1)` — letras blancas sobre transparente
-  - El SVG no tiene rectángulo de fondo — solo los trazos de las letras con `fill="currentColor"`
-- Links "manifiesto" y "acceso anticipado": mismo color, nunca ginger
-  - Activo: rgba(255,255,255,0.85)
-  - Inactivo: rgba(255,255,255,0.40)
+- Logo desktop: 48px height · logo móvil: 32px height
 - Padding: 4px 40px desktop · 4px 20px móvil — barra estrecha
+- Links desktop: "manifiesto" · "acceso anticipado" · ThemeToggle
+- Links móvil (≤640px): solo ThemeToggle — los textos se ocultan con `.nav-text-link { display: none }`
+- Color links: `var(--nav-link)` · sin ginger nunca en el nav
 - Gap entre links: 32px desktop · 20px móvil
-- Nunca noüs wordmark de texto en el footer web
+- `position: sticky; top: 0; backdropFilter: blur(12px)`
 
 ### hero — copy y diseño definitivos y aprobados
 ```
-H1 línea 1:  "delegar es fácil."          → color: #ffffff
-H1 línea 2:  "pensar, cada vez menos."    → color: rgba(255,255,255,0.32)
-subtítulo:   "siete minutos al día. para seguir siendo tú."
-             → DM Serif · color: var(--ginger)
+Línea 1 (estática):   "delegar tu pensamiento es fácil."
+                       → DM Serif · color: var(--hero-static) · clamp(26px, 3.8vw, 50px)
+
+Línea 2 (rotante):    5 frases en ciclo de 5s · blur dissolve · framer-motion
+                       → DM Serif · color: #BE5504 · clamp(28px, 4.5vw, 60px)
+                       → frases: "pensar, cada vez menos." / "despacio. sin darte cuenta."
+                                 "nadie te dijo el precio." / "¿en quién te estás convirtiendo?"
+                                 "tu criterio, diluyéndose."
+                       → animación: opacity + filter blur(14px) + y · duración 0.7s
+
+Subtítulo:            "una app para que tu criterio siga siendo tuyo."
+                       → DM Serif · color: var(--hero-sub) · clamp(13px, 1.4vw, 16px)
+
+CTA:                  "quiero acceso anticipado →"
+                       → CTALink · ancla a #acceso-anticipado · guarda ref en sessionStorage
 ```
-El degradado de opacidad en el H1 no es decorativo — el texto se desvanece
-para reforzar visualmente el concepto de "cada vez menos". No cambiar.
-Sin eyebrow. Sin CTA. El index es un momento de marca, no una página de conversión.
+Viñeta radial: `radial-gradient(ellipse 65% 70%, var(--vignette-a) 0%, var(--vignette-b) 55%, transparent)`
+Sin eyebrow. Sin título "hero". La viñeta adapta al tema via CSS vars.
 
-### /acceso-anticipado — copy aprobado
-```
-eyebrow:  "sé el primero en acceder."  → DM Mono · ginger
-H1:       "está en camino."            → DM Serif · grande · blanco
-```
+### manifiesto — sección pantalla a pantalla
+- Cada bloque ocupa `min-height: 100vh` — una idea por pantalla completa
+- 6 bloques + cierre con "piensa por ti mismo." en ginger
+- Animación `whileInView` con stagger 0.11s (framer-motion)
+- 3 estilos de línea:
+  - `big`: DM Serif · clamp(38px, 6.5vw, 76px) · `var(--manifesto-big)`
+  - `accent`: DM Serif · clamp(26px, 4vw, 52px) · #BE5504
+  - `muted`: DM Serif · clamp(15px, 1.8vw, 19px) · `var(--text-muted)`
+- Divisores: `var(--border-subtle)`
+- Background transparent — el NeuralBackground se ve a través
 
-### /manifiesto — reglas
-- Empieza directamente con "hay personas que piensan." — sin eyebrow ni label
-- Texto normal: rgba(255,255,255,0.85)
-- Texto muted: rgba(255,255,255,0.30)
-- Texto accent: var(--ginger)
-- Bordes entre líneas: rgba(255,255,255,0.06)
-- Termina en "piensa por ti mismo." en ginger — sin CTA a continuación
+### acceso anticipado — sección
+- `eyebrow`: "sé el primero en acceder." → DM Mono · ginger
+- `h2`: "está en camino." → DM Serif · `var(--acceso-h2)` · clamp(44px, 8.5vw, 88px)
+- `descripción`: `var(--acceso-desc)` · clamp(16px, 2vw, 19px)
+- Divisores: `var(--border-subtle)`
+- WaitlistForm sin prop dark — usa `useTheme()` internamente
 
-### uso del ginger en la web
-Ginger está reservado exclusivamente para:
-- Subtítulo del hero ("siete minutos al día. para seguir siendo tú.")
-- Eyebrow de /acceso-anticipado
-- Líneas accent del manifiesto ("¿hasta dónde estás dispuesto a delegar?", etc.)
-- Enlace @think.nous en footer (único elemento)
-Nunca ginger en links de nav. Nunca ginger en cuerpo de texto.
-
-### copy web — reglas
-- Minimizar repetición del nombre noüs dentro de una misma página
-- Nunca `textTransform: uppercase` en copy — minúsculas siempre en CSS y en texto
-- El nombre noüs aparece una sola vez por página: en el logo del nav
+### WaitlistForm — detalles de implementación
+- Submit button: dark → `var(--ginger)` background · light → `var(--obsidian)` background
+- Input: `var(--form-input-bg)`, `var(--form-input-border)`, `var(--form-input-text)`
+- onFocus: border → `var(--ginger)` · onBlur: border → `var(--form-input-border)`
+- Error: `var(--form-error)`
+- Label "sin spam...": `var(--form-label)`
+- Referral box: `var(--referral-box-bg)`, `var(--referral-box-border)`, `var(--referral-url)`
 
 ### responsive — decisiones aprobadas
 - Breakpoint único: 640px
 - Estrategia: inline styles para todo excepto responsive — clases CSS en globals.css
-- Clases definidas: `.nav-wrap` `.nav-logo` `.nav-links` `.page-pad` `.section-pad` `.acceso-pad` `.footer-pad` `.hero-h1` `.acceso-h1`
-- Padding lateral: 40px desktop → 20px móvil en todas las páginas
-- Letter-spacing en H1: ajuste en móvil para evitar cortes de palabra
-- Tamaños de fuente: ya usan `clamp()` — escalan solos sin clases adicionales
+- Clases CSS definidas:
+  `.nav-wrap` `.nav-logo` `.nav-links` `.nav-text-link`
+  `.page-pad` `.section-pad` `.acceso-pad` `.footer-pad`
+  `.hero-h1` `.acceso-h1`
+- `.nav-text-link { display: none }` en ≤640px — evita solapamiento en nav móvil
+- Padding lateral: 40px desktop → 20px móvil
+- Tamaños de fuente: usan `clamp()` — escalan solos sin clases adicionales
+- `scroll-behavior: smooth; scroll-padding-top: 65px` para anclas de nav
 
 ---
 
 ## dirección visual de la app iOS
+
+La app iOS comparte los mismos tokens de marca que la web. Las reglas de color,
+tipografía y principios de diseño son idénticos. Ver secciones anteriores.
 
 ### tokens de color en SwiftUI
 ```swift
@@ -390,7 +455,7 @@ Font.nousSans(size:)    // DM Sans
 
 ### eyebrows de sección
 - DM Mono, 9–10px, color ginger
-- letter-spacing amplio, text-transform uppercase
+- letter-spacing amplio
 
 ### onboarding — dirección visual aprobada
 - Fondo: obsidian
@@ -421,11 +486,26 @@ Font.nousSans(size:)    // DM Sans
 
 ### web (nous/web)
 - Next.js 14, TypeScript
-- CSS variables nativas — sin Tailwind, sin CSS Modules
+- Tailwind CSS v3 (no v4 — error ESM en Windows con v4)
+- postcss.config.js en CommonJS (no .mjs — problema en Windows)
+- CSS variables nativas para todo el sistema de temas
 - Deploy: Vercel — producción en noüs.es
 - Supabase (DB + Auth), Resend (emails), PostHog (analytics)
 - Fix crítico: usar maybeSingle() no single() en queries de existencia
 - Fix crítico: RESEND_FROM_EMAIL debe ser hola@xn--nos-ioa.es en Vercel
+
+**Componentes principales:**
+- `NeuralBackground` — canvas fijo global, tema-aware via themeRef
+- `Nav` — client component, logo tema-aware, links ocultos en móvil
+- `ThemeToggle` — Sol/Luna con AnimatePresence
+- `HeroGeometric` — hero con frases rotantes blur dissolve
+- `ManifestoSection` — pantalla a pantalla con whileInView
+- `AccesoSection` — sección formulario
+- `WaitlistForm` — formulario con useTheme interno, referral system
+- `CTALink` — CTA que ancla a #acceso-anticipado, guarda ref en sessionStorage
+
+**Contextos:**
+- `ThemeContext` — tema global, localStorage, prefers-color-scheme fallback
 
 ### app iOS (nous/app)
 - SwiftUI nativo, Xcode
@@ -433,6 +513,7 @@ Font.nousSans(size:)    // DM Sans
 - RevenueCat (suscripciones)
 - PostHog iOS SDK (analytics)
 - Sin storyboards — todo SwiftUI puro
+- Mismos tokens de color y tipografía que la web (ver sección iOS)
 
 ### estructura de carpetas
 ```
@@ -440,7 +521,7 @@ nous/
   web/          ← Next.js (desplegado en noüs.es)
   app/          ← SwiftUI (por arrancar)
   brand/        ← documentos de marca
-  CLAUDE.md     ← este fichero
+  CLAUDE.md     ← este fichero (sincronizado en web/, app/ y brand/)
 ```
 
 ---
@@ -497,15 +578,26 @@ nous/
 
 ## convenciones de código
 
+### web (TypeScript / Next.js)
 - TypeScript estricto — sin `any`, sin `// @ts-ignore`
 - Comentarios en español
 - Variables y funciones: camelCase en inglés
 - Componentes: PascalCase
-- Colores: siempre como variables CSS, nunca hex hardcodeado
+- Colores: siempre como variables CSS (`var(--token)`), nunca hex hardcodeado
+  Excepción: `#BE5504` (ginger) en los dos SVGs del logo y en la viñeta del NeuralBackground
 - App Router de Next.js — no Pages Router
-- `'use client'` solo cuando hay interactividad real
+- `'use client'` solo cuando hay interactividad real (hooks, eventos, ThemeContext)
 - API routes en `src/app/api/[nombre]/route.ts`
 - Supabase: usar maybeSingle() para queries donde el resultado puede ser null
+
+### iOS (Swift / SwiftUI)
+- Swift idiomático — sin force unwrap (`!`) salvo casos justificados
+- Comentarios en español
+- Variables y funciones: camelCase en inglés
+- Views y tipos: PascalCase
+- Colores: siempre via extensión `Color.nombre` — nunca hex literal
+- Fuentes: siempre via extensión `Font.nousSerif/Mono/Sans(size:)`
+- Sin storyboards ni UIKit salvo integraciones de terceros que lo requieran
 
 ---
 
@@ -520,24 +612,31 @@ En copy y narrativa:
 - Comparar noüs con competidores
 - "puntos", "estrellas", "racha" — el score no es gamificación
 
-En diseño:
+En diseño (web e iOS):
 - Gradientes de ningún tipo
 - Segundo color de acento
 - Sombras decorativas
-- Blur como efecto visual
+- Blur como efecto visual decorativo
 - Emojis en cualquier componente
 - Blanco puro como fondo de pantalla
-- Tailwind o cualquier framework CSS externo
 - Texto en mayúsculas en el copy — ni en CSS (textTransform) ni en el texto
-- Ginger en links de nav web o en el footer web
+- Ginger en links de nav web
 - Repetir el nombre noüs más de una vez por página web
-- Mezclar CTA con páginas de contenido — cada página tiene un solo trabajo
+- Mezclar CTA con páginas de contenido — cada sección tiene un solo trabajo
 
-En código:
-- Hex hardcodeado fuera de globals.css
+En código web:
+- Hex hardcodeado en componentes — usar variables CSS
+- Tailwind v4 — usar v3
+- postcss.config.mjs — usar postcss.config.js (CommonJS)
 - `any` en TypeScript
 - `// @ts-ignore`
 - `.single()` en Supabase cuando el resultado puede ser null — usar `.maybeSingle()`
+- Prop `dark` en componentes — usar `useTheme()` internamente
+
+En código iOS:
+- Force unwrap (`!`) sin justificación
+- Colores hex literales — usar Color extensions
+- UIKit directo — usar SwiftUI + representables solo si es imprescindible
 
 ---
 
@@ -582,6 +681,6 @@ piensa por ti mismo.
 
 ---
 
-*CLAUDE.md · noüs · v3.2 · abril 2026*
+*CLAUDE.md · noüs · v4.0 · mayo 2026*
 *Solo contiene decisiones ya tomadas. No especular sobre funcionalidad no
 definida. Actualizar cuando se tomen nuevas decisiones de producto o arquitectura.*
