@@ -2,6 +2,7 @@
 
 import { useState, useEffect, FormEvent } from 'react'
 import { useTheme } from '@/context/ThemeContext'
+import { capture } from '@/lib/posthog'
 
 
 export default function WaitlistForm() {
@@ -46,6 +47,11 @@ export default function WaitlistForm() {
         setReferralCode(data.referralCode || '')
         setUserNumber(data.userNumber || 0)
         setState('success')
+        capture('waitlist_signup', {
+          hasReferral: !!referredBy,
+          userNumber: data.userNumber,
+          referralCode: data.referralCode,
+        })
         try { sessionStorage.removeItem('nous_ref') } catch {}
       } else {
         setState('error')
@@ -221,6 +227,7 @@ export default function WaitlistForm() {
       }}>
         <input
           type="email"
+          className="ph-no-capture"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="tu@email.com"
